@@ -1,44 +1,37 @@
-# TypeScript Generics
+# Generics in TypeScript
 
-This document covers TypeScript generics across three levels of expertise: Basic, Advanced, and Mastery.
+## Basic Generics [Core]
 
-## Table of Contents
-- [Basic Level](#basic-level)
-- [Advanced Level](#advanced-level)
-- [Mastery Level](#mastery-level)
-
-## Basic Level
-
-### Basic Generic Functions
+### Generic Functions [Core]
 ```typescript
 function identity<T>(arg: T): T {
-    return arg;
+  return arg;
 }
 
-// Usage
-let output1 = identity<string>("hello");
-let output2 = identity<number>(42);
-let output3 = identity("hello"); // Type inference
+let output = identity<string>("hello");
+let output2 = identity("hello"); // Type inference
 ```
 
-### Generic Interfaces
+### Generic Interfaces [Common]
 ```typescript
 interface GenericIdentityFn<T> {
-    (arg: T): T;
+  (arg: T): T;
 }
 
 function identity<T>(arg: T): T {
-    return arg;
+  return arg;
 }
 
 let myIdentity: GenericIdentityFn<number> = identity;
 ```
 
-### Generic Classes
+## Generic Classes [Common]
+
+### Basic Generic Class [Common]
 ```typescript
 class GenericNumber<T> {
-    zeroValue: T;
-    add: (x: T, y: T) => T;
+  zeroValue: T;
+  add: (x: T, y: T) => T;
 }
 
 let myGenericNumber = new GenericNumber<number>();
@@ -46,110 +39,106 @@ myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function(x, y) { return x + y; };
 ```
 
-## Advanced Level
-
-### Generic Constraints
+### Generic Constraints [Common]
 ```typescript
 interface Lengthwise {
-    length: number;
+  length: number;
 }
 
 function loggingIdentity<T extends Lengthwise>(arg: T): T {
-    console.log(arg.length);
-    return arg;
+  console.log(arg.length);
+  return arg;
 }
-
-// Usage
-loggingIdentity("hello"); // OK
-loggingIdentity([1, 2, 3]); // OK
-// loggingIdentity(3); // Error: number doesn't have a .length property
 ```
 
-### Using Type Parameters in Generic Constraints
+## Advanced Generics [Advanced]
+
+### Generic Constraints with Keyof [Advanced]
 ```typescript
 function getProperty<T, K extends keyof T>(obj: T, key: K) {
-    return obj[key];
+  return obj[key];
 }
 
 let x = { a: 1, b: 2, c: 3, d: 4 };
-
-getProperty(x, "a"); // OK
+getProperty(x, "a");
 getProperty(x, "m"); // Error: Argument of type '"m"' is not assignable to parameter of type '"a" | "b" | "c" | "d"'
 ```
 
-### Generic Defaults
+### Generic Type Aliases [Advanced]
 ```typescript
-interface GenericInterface<T = string> {
-    value: T;
-}
+type Container<T> = { value: T };
 
-const stringValue: GenericInterface = { value: "hello" };
-const numberValue: GenericInterface<number> = { value: 42 };
-```
-
-## Mastery Level
-
-### Conditional Types
-```typescript
-type ExtractType<T> = T extends (infer U)[] ? U : T;
-
-type StringArray = string[];
-type ExtractedType = ExtractType<StringArray>; // string
-```
-
-### Mapped Types with Generics
-```typescript
-type Readonly<T> = {
-    readonly [P in keyof T]: T[P];
-};
-
-type Partial<T> = {
-    [P in keyof T]?: T[P];
-};
-
-interface Person {
-    name: string;
-    age: number;
-}
-
-type ReadonlyPerson = Readonly<Person>;
-type PartialPerson = Partial<Person>;
-```
-
-### Generic Type Aliases
-```typescript
 type Tree<T> = {
-    value: T;
-    left?: Tree<T>;
-    right?: Tree<T>;
-};
-
-const numberTree: Tree<number> = {
-    value: 1,
-    left: {
-        value: 2,
-        left: { value: 4 },
-        right: { value: 5 }
-    },
-    right: {
-        value: 3
-    }
+  value: T;
+  left: Tree<T> | null;
+  right: Tree<T> | null;
 };
 ```
 
-## Best Practices
+## Best Practices [Core]
 
-### Basic
-- Use generics to create reusable components
-- Leverage type inference when possible
-- Keep generic type parameters simple and clear
+1. Use generics for reusable components
+2. Use type inference when possible
+3. Add constraints when needed
+4. Use proper naming conventions
+5. Document generic parameters
+6. Consider using default types [Common]
+7. Use proper type constraints [Common]
+8. Document complex generics
+9. Use proper type inference
+10. Consider using mapped types [Advanced]
 
-### Advanced
-- Use constraints to limit generic types
-- Combine generics with interfaces for better type safety
-- Use default types for common cases
+## Common Patterns [Common]
 
-### Mastery
-- Create complex type transformations with conditional types
-- Use mapped types to create utility types
-- Implement recursive generic types for complex data structures 
+### Factory Pattern [Common]
+```typescript
+interface Factory<T> {
+  create(): T;
+}
+
+class NumberFactory implements Factory<number> {
+  create(): number {
+    return Math.random();
+  }
+}
+```
+
+### Repository Pattern [Common]
+```typescript
+interface Repository<T> {
+  findById(id: string): T | undefined;
+  save(entity: T): void;
+  delete(id: string): void;
+}
+
+class UserRepository implements Repository<User> {
+  // Implementation
+}
+```
+
+## Interview Focus Areas
+
+### Core Knowledge [Core]
+- Basic generic functions
+- Generic type parameters
+- Type inference with generics
+- Basic generic constraints
+- Generic interfaces
+
+### Common Interview Questions [Common]
+- What are generics and why are they useful?
+- How do you use generic constraints?
+- What's the difference between any and generic types?
+- How do you implement generic interfaces?
+
+### Advanced Topics [Advanced]
+- Generic type aliases
+- Advanced constraints
+- Mapped types with generics
+- Conditional types with generics
+
+### Mastery Level [Mastery]
+- Complex generic patterns
+- Advanced type inference
+- Performance implications of generics
+- Advanced generic composition

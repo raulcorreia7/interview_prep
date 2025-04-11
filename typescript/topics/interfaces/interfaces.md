@@ -1,183 +1,178 @@
-# TypeScript Interfaces
+# Interfaces in TypeScript
 
-This document covers TypeScript interfaces across three levels of expertise: Basic, Advanced, and Mastery.
+## Basic Interfaces [Core]
 
-## Table of Contents
-- [Basic Level](#basic-level)
-- [Advanced Level](#advanced-level)
-- [Mastery Level](#mastery-level)
-
-## Basic Level
-
-### Basic Interface Structure
-```typescript
-interface Person {
-    name: string;
-    age: number;
-    greet(): string;
-}
-
-class Employee implements Person {
-    name: string;
-    age: number;
-    
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    }
-    
-    greet(): string {
-        return `Hello, I'm ${this.name}`;
-    }
-}
-```
-
-### Optional Properties
+### Interface Declaration [Core]
 ```typescript
 interface User {
-    name: string;
-    email: string;
-    phone?: string;  // Optional property
+  name: string;
+  age: number;
+  email?: string;
+  readonly id: number;
 }
-
-const user1: User = {
-    name: "John",
-    email: "john@example.com"
-};
-
-const user2: User = {
-    name: "Jane",
-    email: "jane@example.com",
-    phone: "123-456-7890"
-};
 ```
 
-### Readonly Properties
+### Optional Properties [Core]
 ```typescript
-interface Point {
-    readonly x: number;
-    readonly y: number;
+interface Config {
+  required: string;
+  optional?: number;
+  readonly constant: boolean;
 }
-
-const point: Point = { x: 10, y: 20 };
-// point.x = 30;  // Error: Cannot assign to 'x' because it is a read-only property
 ```
 
-## Advanced Level
+## Function Types [Common]
 
-### Function Types
+### Function Interfaces [Common]
 ```typescript
-interface SearchFunction {
-    (source: string, subString: string): boolean;
+interface SearchFunc {
+  (source: string, subString: string): boolean;
 }
 
-const mySearch: SearchFunction = function(source: string, subString: string): boolean {
-    return source.includes(subString);
+const mySearch: SearchFunc = function(source: string, subString: string) {
+  return source.search(subString) > -1;
 };
 ```
 
-### Indexable Types
+### Method Interfaces [Common]
+```typescript
+interface ClockInterface {
+  currentTime: Date;
+  setTime(d: Date): void;
+}
+```
+
+## Advanced Interfaces [Advanced]
+
+### Indexable Types [Advanced]
 ```typescript
 interface StringArray {
-    [index: number]: string;
+  [index: number]: string;
 }
 
-const myArray: StringArray = ["Bob", "Fred"];
-const myStr: string = myArray[0];
+interface NumberDictionary {
+  [key: string]: number;
+  length: number;
+  name: string; // Error: Property 'name' of type 'string' is not assignable to string index type 'number'
+}
 ```
 
-### Extending Interfaces
-```typescript
-interface Shape {
-    color: string;
-}
-
-interface Square extends Shape {
-    sideLength: number;
-}
-
-const square: Square = {
-    color: "blue",
-    sideLength: 10
-};
-```
-
-## Mastery Level
-
-### Hybrid Types
+### Hybrid Types [Advanced]
 ```typescript
 interface Counter {
-    (start: number): string;
-    interval: number;
-    reset(): void;
+  (start: number): string;
+  interval: number;
+  reset(): void;
 }
 
 function getCounter(): Counter {
-    let counter = function(start: number) { return start.toString(); } as Counter;
-    counter.interval = 123;
-    counter.reset = function() { this.interval = 0; };
-    return counter;
+  let counter = function(start: number) { return start.toString(); };
+  counter.interval = 123;
+  counter.reset = function() { counter.interval = 0; };
+  return counter;
 }
-
-const c = getCounter();
-c(10);
-c.reset();
-c.interval = 5.0;
 ```
 
-### Generic Interfaces
+## Interface Inheritance [Common]
+
+### Extending Interfaces [Common]
 ```typescript
-interface KeyValuePair<K, V> {
-    key: K;
-    value: V;
+interface Shape {
+  color: string;
 }
 
-const pair1: KeyValuePair<number, string> = {
-    key: 1,
-    value: "one"
-};
+interface Square extends Shape {
+  sideLength: number;
+}
 
-const pair2: KeyValuePair<string, boolean> = {
-    key: "isActive",
-    value: true
-};
+interface Circle extends Shape {
+  radius: number;
+}
 ```
 
-### Mapped Types with Interfaces
+### Multiple Inheritance [Common]
 ```typescript
-interface Person {
-    name: string;
-    age: number;
-    email: string;
+interface Shape {
+  color: string;
 }
 
-type ReadonlyPerson = Readonly<Person>;
-type PartialPerson = Partial<Person>;
-type PickPerson = Pick<Person, 'name' | 'age'>;
-type OmitPerson = Omit<Person, 'email'>;
+interface PenStroke {
+  penWidth: number;
+}
 
-const readonlyPerson: ReadonlyPerson = {
-    name: "John",
-    age: 30,
-    email: "john@example.com"
-};
-
-// readonlyPerson.name = "Jane";  // Error: Cannot assign to 'name' because it is a read-only property
+interface Square extends Shape, PenStroke {
+  sideLength: number;
+}
 ```
 
-## Best Practices
+## Best Practices [Core]
 
-### Basic
-- Use interfaces to define object shapes
-- Keep interfaces focused and single-purpose
-- Use meaningful property names
+1. Use interfaces for object shapes
+2. Prefer interfaces over type aliases for object types
+3. Use readonly for immutable properties
+4. Document interface properties
+5. Use proper naming conventions
+6. Consider using index signatures [Common]
+7. Use proper inheritance patterns [Common]
+8. Document complex interfaces
+9. Use proper method signatures
+10. Consider using hybrid types [Advanced]
 
-### Advanced
-- Use interfaces for function types
-- Leverage interface extension for code reuse
-- Use index signatures for dynamic properties
+## Common Patterns [Common]
 
-### Mastery
-- Create generic interfaces for reusable components
-- Use mapped types to transform interfaces
-- Combine multiple interface features for complex types 
+### Factory Pattern [Common]
+```typescript
+interface Animal {
+  makeSound(): void;
+}
+
+interface AnimalFactory {
+  createAnimal(type: string): Animal;
+}
+```
+
+### Strategy Pattern [Common]
+```typescript
+interface PaymentStrategy {
+  pay(amount: number): void;
+}
+
+class CreditCardPayment implements PaymentStrategy {
+  pay(amount: number): void {
+    console.log(`Paid ${amount} using credit card`);
+  }
+}
+
+class PayPalPayment implements PaymentStrategy {
+  pay(amount: number): void {
+    console.log(`Paid ${amount} using PayPal`);
+  }
+}
+```
+
+## Interview Focus Areas
+
+### Core Knowledge [Core]
+- Interface declaration
+- Optional properties
+- Readonly properties
+- Basic interface usage
+- Interface vs type alias
+
+### Common Interview Questions [Common]
+- What's the difference between interface and type?
+- When should you use interfaces vs type aliases?
+- How do you handle optional properties in interfaces?
+- What are function interfaces and how do you use them?
+
+### Advanced Topics [Advanced]
+- Indexable types
+- Hybrid types
+- Advanced inheritance
+- Complex interface patterns
+
+### Mastery Level [Mastery]
+- Advanced type manipulation with interfaces
+- Performance implications of interfaces
+- Complex design patterns with interfaces
+- Advanced interface composition

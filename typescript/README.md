@@ -1,91 +1,78 @@
-# TypeScript Learning Path
+# TypeScript Language Features
 
-This repository contains comprehensive documentation and examples for learning TypeScript, organized into topics that progress from basic to mastery level.
+A focused guide on TypeScript language features for senior/lead interviews.
 
-## Table of Contents
-- [TypeScript Learning Path](#typescript-learning-path)
-  - [Table of Contents](#table-of-contents)
-  - [Topic-Based Learning](#topic-based-learning)
-    - [Core Topics](#core-topics)
-  - [Mastery-Only Topics](#mastery-only-topics)
-    - [Advanced Type System](#advanced-type-system)
-    - [Advanced Patterns](#advanced-patterns)
-    - [Configuration and Tooling](#configuration-and-tooling)
-  - [Learning Path](#learning-path)
-  - [Best Practices](#best-practices)
-    - [Basic Level](#basic-level)
-    - [Advanced Level](#advanced-level)
-    - [Mastery Level](#mastery-level)
-  - [Resources](#resources)
+## Type System [Core]
 
-## Topic-Based Learning
+### Basic Types
+- [Type System](./topics/type-system/type-system.md)
+- [Advanced Types](./topics/types/types.md)
+- [Generics](./topics/generics/generics.md)
 
-Each topic below contains progressive content from basic to mastery level:
+### Type Features
+- Union/Intersection types
+- Literal types
+- Type guards
+- Type inference
 
-### Core Topics
-- [Types](topics/types/types.md)
-- [Classes](topics/classes/classes.md)
-- [Interfaces](topics/interfaces/interfaces.md)
-- [Generics](topics/generics/generics.md)
-- [Async Programming](topics/async/async.md)
-- [Error Handling](topics/error-handling/error-handling.md)
-- [Type System](topics/type-system/type-system.md)
-- [Configuration](topics/configuration/configuration.md)
+## Advanced Type Features [Advanced]
 
-## Mastery-Only Topics
+### Type Manipulation
+- Mapped types
+- Conditional types
+- Template literal types
+- Utility types
 
-These topics are specifically for mastery level understanding:
+### Type System Patterns
+- Type predicates
+- Discriminated unions
+- Branded types
+- Type assertions
 
-### Advanced Type System
-- [Conditional Types](mastery/conditional-types.md)
-- [Utility Types](mastery/utility-types.md)
-- [Type Guards](mastery/guards.md)
-- [Mapped Types](mastery/mapped-types.md)
-- [Template Literal Types](mastery/template-literal-types.md)
+## Common Interview Topics [Common]
 
-### Advanced Patterns
-- [Promise Types](mastery/promise-types.md)
-- [Testing Patterns](mastery/testing-patterns.md)
-- [Type Compatibility](mastery/type-compatibility.md)
-- [Declaration Merging](mastery/declaration-merging.md)
-- [Type Manipulation](mastery/type-manipulation.md)
+### Type System Mastery
+- Type inference
+- Type guards
+- Generic constraints
+- Type compatibility
 
-### Configuration and Tooling
-- [TypeScript Configuration](mastery/typescript-configuration.md)
-- [Compiler Options](mastery/compiler-options.md)
-- [Project References](mastery/project-references.md)
-- [Custom Type Definitions](mastery/custom-type-definitions.md)
+### Advanced Features
+- Decorators
+- Namespaces
+- Module augmentation
+- Declaration merging
 
-## Learning Path
+## Best Practices [Core]
 
-1. Start with the Basic level sections in each core topic
-2. Progress to Advanced level sections once comfortable with basics
-3. Explore Mastery level sections and Mastery-Only topics
-4. Practice with exercises at each level
-5. Apply best practices in your projects
+### Type Safety
+1. Strict type checking
+2. Proper type definitions
+3. Type inference usage
+4. Generic constraints
 
-## Best Practices
+### Type Patterns
+1. Union types
+2. Intersection types
+3. Mapped types
+4. Conditional types
 
-### Basic Level
-- Use strict mode (`strict: true` in tsconfig.json)
-- Leverage type inference when possible
-- Use interfaces for object shapes
-- Use type aliases for unions and intersections
+## Interview Focus Areas
 
-### Advanced Level
-- Use generics for reusable components
-- Implement proper error handling
-- Use advanced type features appropriately
-- Follow SOLID principles
+### Core Knowledge [Core]
+- Type system fundamentals
+- Basic type features
+- Generic patterns
+- Type inference
 
-### Mastery Level
-- Create custom utility types
-- Implement advanced type patterns
-- Optimize TypeScript configuration
-- Write comprehensive type definitions
+### Advanced Topics [Advanced]
+- Type manipulation
+- Advanced generics
+- Type system patterns
+- Declaration merging
 
-## Resources
-
-- [TypeScript Official Documentation](https://www.typescriptlang.org/docs/)
-- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
-- [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/) 
+### Mastery Level [Mastery]
+- Complex type patterns
+- Advanced type manipulation
+- Type system design
+- Performance considerations 

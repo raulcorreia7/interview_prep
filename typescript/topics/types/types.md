@@ -1,133 +1,190 @@
-# TypeScript Types
+# Types in TypeScript
 
-This document covers TypeScript types across three levels of expertise: Basic, Advanced, and Mastery.
+## Basic Types [Core]
 
-## Table of Contents
-- [Basic Level](#basic-level)
-- [Advanced Level](#advanced-level)
-- [Mastery Level](#mastery-level)
-
-## Basic Level
-
-### Primitive Types
+### Primitive Types [Core]
 ```typescript
-// Basic type declarations
-let name: string = "John";
-let age: number = 30;
-let isActive: boolean = true;
-let nothing: null = null;
-let notDefined: undefined = undefined;
+let str: string = "hello";
+let num: number = 42;
+let bool: boolean = true;
+let undef: undefined = undefined;
+let nul: null = null;
+let sym: symbol = Symbol("key");
 ```
 
-### Type Annotations
+### Literal Types [Common]
 ```typescript
-// Function parameter and return type annotations
-function greet(name: string): string {
-    return `Hello, ${name}!`;
+let direction: "north" | "south" | "east" | "west";
+let status: 200 | 404 | 500;
+```
+
+## Object Types [Core]
+
+### Interfaces [Core]
+```typescript
+interface User {
+  name: string;
+  age: number;
+  email?: string;
+  readonly id: number;
 }
 ```
 
-### Type Inference
+### Type Aliases [Common]
 ```typescript
-// TypeScript can infer types
-let inferredString = "Hello";  // TypeScript infers string
-let inferredNumber = 42;       // TypeScript infers number
+type Point = {
+  x: number;
+  y: number;
+};
+
+type ID = string | number;
 ```
 
-## Advanced Level
-
-### Union Types
+### Index Signatures [Common]
 ```typescript
-// A variable that can be one of several types
-let id: string | number;
-id = "123";    // Valid
-id = 123;      // Valid
+interface StringArray {
+  [index: number]: string;
+}
+
+interface Dictionary {
+  [key: string]: number;
+}
 ```
 
-### Intersection Types
+## Union and Intersection Types [Common]
+
+### Union Types [Common]
 ```typescript
-// Combining multiple types into one
+type Status = "success" | "error" | "loading";
+type ID = string | number;
+```
+
+### Intersection Types [Common]
+```typescript
 interface HasName {
-    name: string;
+  name: string;
 }
 
 interface HasAge {
-    age: number;
+  age: number;
 }
 
 type Person = HasName & HasAge;
-
-const person: Person = {
-    name: "John",
-    age: 30
-};
 ```
 
-### Literal Types
+## Advanced Types [Advanced]
+
+### Mapped Types [Advanced]
 ```typescript
-// Specific string or number values
-type Direction = "north" | "south" | "east" | "west";
-let direction: Direction = "north";  // Only these four values are valid
-```
-
-## Mastery Level
-
-### Conditional Types
-```typescript
-// Types that depend on other types
-type ExtractType<T> = T extends (infer U)[] ? U : T;
-
-type StringArray = string[];
-type ExtractedType = ExtractType<StringArray>;  // string
-```
-
-### Mapped Types
-```typescript
-// Creating new types by transforming existing ones
 type Readonly<T> = {
-    readonly [P in keyof T]: T[P];
+  readonly [P in keyof T]: T[P];
 };
 
-interface Person {
-    name: string;
-    age: number;
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+```
+
+### Conditional Types [Advanced]
+```typescript
+type NonNullable<T> = T extends null | undefined ? never : T;
+type ExtractType<T, U> = T extends U ? T : never;
+```
+
+## Utility Types [Common]
+
+### Common Utility Types [Common]
+```typescript
+// Built-in utility types
+type PartialUser = Partial<User>;
+type ReadonlyUser = Readonly<User>;
+type PickUser = Pick<User, "name" | "age">;
+type OmitUser = Omit<User, "email">;
+```
+
+### Custom Utility Types [Advanced]
+```typescript
+type Nullable<T> = T | null;
+type Promisify<T> = Promise<T>;
+type DeepReadonly<T> = {
+  readonly [P in keyof T]: DeepReadonly<T[P]>;
+};
+```
+
+## Best Practices [Core]
+
+1. Use interfaces for object shapes
+2. Use type aliases for unions and intersections
+3. Prefer readonly for immutable properties
+4. Use strict null checks
+5. Avoid using any type
+6. Use proper type guards [Common]
+7. Consider using branded types [Advanced]
+8. Use proper type inference
+9. Document complex types
+10. Use utility types when appropriate
+
+## Common Patterns [Common]
+
+### Type Guards [Common]
+```typescript
+function isString(value: unknown): value is string {
+  return typeof value === "string";
 }
 
-type ReadonlyPerson = Readonly<Person>;
+function processValue(value: string | number) {
+  if (isString(value)) {
+    return value.toUpperCase();
+  }
+  return value.toFixed(2);
+}
 ```
 
-### Template Literal Types
+### Discriminated Unions [Common]
 ```typescript
-// Manipulating string literal types
-type EventName = "click" | "hover" | "scroll";
-type HandlerName = `on${Capitalize<EventName>}`;  // "onClick" | "onHover" | "onScroll"
+interface Square {
+  kind: "square";
+  size: number;
+}
+
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+type Shape = Square | Circle;
+
+function area(shape: Shape): number {
+  switch (shape.kind) {
+    case "square": return shape.size * shape.size;
+    case "circle": return Math.PI * shape.radius * shape.radius;
+  }
+}
 ```
 
-## Exercises
+## Interview Focus Areas
 
-### Basic
-1. Create a function that takes a string and returns its length
-2. Create an interface for a basic user with name and email
+### Core Knowledge [Core]
+- Basic type annotations
+- Interface definitions
+- Type aliases
+- Union and intersection types
+- Type inference
 
-### Advanced
-1. Create a type that can be either a string or an array of strings
-2. Create an intersection type combining two interfaces
+### Common Interview Questions [Common]
+- What's the difference between type and interface?
+- How do you handle nullable types in TypeScript?
+- What are utility types and how do you use them?
+- How do you implement type guards?
 
-### Mastery
-1. Create a mapped type that makes all properties optional and nullable
-2. Create a conditional type that extracts the return type of a function
+### Advanced Topics [Advanced]
+- Mapped types
+- Conditional types
+- Branded types
+- Advanced type inference
 
-## Best Practices
-
-### Basic
-- Always use type annotations for function parameters and return types
-- Leverage type inference for simple variable declarations
-
-### Advanced
-- Use union types to handle multiple possible types
-- Use intersection types to combine multiple interfaces
-
-### Mastery
-- Use conditional types for complex type transformations
-- Leverage mapped types for creating utility types
-- Use template literal types for string manipulation 
+### Mastery Level [Mastery]
+- Complex type manipulation
+- Advanced generic types
+- Type system internals
+- Performance implications of complex types

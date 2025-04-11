@@ -1,228 +1,210 @@
-# TypeScript Classes
+# Classes in TypeScript
 
-This document covers TypeScript classes across three levels of expertise: Basic, Advanced, and Mastery.
+## Class Basics [Core]
 
-## Table of Contents
-- [Basic Level](#basic-level)
-- [Advanced Level](#advanced-level)
-- [Mastery Level](#mastery-level)
-
-## Basic Level
-
-### Basic Class Structure
+### Class Declaration [Core]
 ```typescript
 class Person {
-    // Properties
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 
-    // Constructor
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    }
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
 
-    // Method
-    greet(): string {
-        return `Hello, my name is ${this.name}`;
-    }
+  greet(): string {
+    return `Hello, ${this.name}!`;
+  }
 }
-
-// Usage
-const person = new Person("John", 30);
-console.log(person.greet());
 ```
 
-### Access Modifiers
+### Access Modifiers [Core]
 ```typescript
 class BankAccount {
-    private balance: number;
-    public accountNumber: string;
+  private balance: number;
+  public readonly accountNumber: string;
+  protected owner: string;
 
-    constructor(accountNumber: string, initialBalance: number) {
-        this.accountNumber = accountNumber;
-        this.balance = initialBalance;
-    }
-
-    public deposit(amount: number): void {
-        this.balance += amount;
-    }
-
-    public getBalance(): number {
-        return this.balance;
-    }
+  constructor(accountNumber: string, owner: string) {
+    this.accountNumber = accountNumber;
+    this.owner = owner;
+    this.balance = 0;
+  }
 }
 ```
 
-## Advanced Level
+## Inheritance [Common]
 
-### Inheritance
+### Basic Inheritance [Common]
 ```typescript
 class Animal {
-    constructor(public name: string) {}
+  constructor(public name: string) {}
 
-    move(distance: number = 0) {
-        console.log(`${this.name} moved ${distance}m.`);
-    }
+  move(distance: number): void {
+    console.log(`${this.name} moved ${distance}m.`);
+  }
 }
 
 class Dog extends Animal {
-    constructor(name: string) {
-        super(name);
-    }
-
-    bark() {
-        console.log('Woof! Woof!');
-    }
+  bark(): void {
+    console.log("Woof! Woof!");
+  }
 }
-
-const dog = new Dog('Rex');
-dog.bark();
-dog.move(10);
 ```
 
-### Abstract Classes
+### Method Overriding [Common]
 ```typescript
-abstract class Shape {
-    abstract getArea(): number;
-    
-    printArea(): void {
-        console.log(`Area: ${this.getArea()}`);
-    }
+class Animal {
+  move(distance: number): void {
+    console.log(`Animal moved ${distance}m.`);
+  }
 }
 
-class Circle extends Shape {
-    constructor(private radius: number) {
-        super();
-    }
-
-    getArea(): number {
-        return Math.PI * this.radius * this.radius;
-    }
+class Snake extends Animal {
+  move(distance: number): void {
+    console.log("Slithering...");
+    super.move(distance);
+  }
 }
-
-const circle = new Circle(5);
-circle.printArea();
 ```
 
-### Static Members
+## Advanced Features [Advanced]
+
+### Abstract Classes [Advanced]
+```typescript
+abstract class Animal {
+  abstract makeSound(): void;
+  
+  move(): void {
+    console.log("Moving...");
+  }
+}
+
+class Dog extends Animal {
+  makeSound(): void {
+    console.log("Woof!");
+  }
+}
+```
+
+### Static Members [Common]
 ```typescript
 class MathHelper {
-    static PI: number = 3.14159;
-    
-    static calculateCircleArea(radius: number): number {
-        return this.PI * radius * radius;
-    }
+  static PI: number = 3.14159;
+  
+  static calculateArea(radius: number): number {
+    return this.PI * radius * radius;
+  }
 }
-
-console.log(MathHelper.calculateCircleArea(5));
 ```
 
-## Mastery Level
+## Interfaces and Classes [Common]
 
-### Decorators
+### Implementing Interfaces [Common]
 ```typescript
-function log(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-    const originalMethod = descriptor.value;
-    
-    descriptor.value = function(...args: any[]) {
-        console.log(`Calling ${propertyKey} with args:`, args);
-        const result = originalMethod.apply(this, args);
-        console.log(`Result:`, result);
-        return result;
-    };
-    
-    return descriptor;
+interface ClockInterface {
+  currentTime: Date;
+  setTime(d: Date): void;
 }
 
-class Calculator {
-    @log
-    add(a: number, b: number): number {
-        return a + b;
-    }
+class Clock implements ClockInterface {
+  currentTime: Date = new Date();
+  
+  setTime(d: Date): void {
+    this.currentTime = d;
+  }
 }
-
-const calc = new Calculator();
-calc.add(2, 3);
 ```
 
-### Mixins
+### Class as Interface [Advanced]
 ```typescript
-type Constructor<T = {}> = new (...args: any[]) => T;
-
-function Timestamped<TBase extends Constructor>(Base: TBase) {
-    return class extends Base {
-        timestamp = new Date();
-    };
+class Point {
+  x: number;
+  y: number;
 }
 
-function Activatable<TBase extends Constructor>(Base: TBase) {
-    return class extends Base {
-        isActive = false;
-        
-        activate() {
-            this.isActive = true;
-        }
-        
-        deactivate() {
-            this.isActive = false;
-        }
-    };
+interface Point3d extends Point {
+  z: number;
 }
-
-class User {
-    constructor(public name: string) {}
-}
-
-const TimestampedUser = Timestamped(User);
-const TimestampedActivatableUser = Activatable(TimestampedUser);
-
-const user = new TimestampedActivatableUser("John");
-user.activate();
-console.log(user.timestamp, user.isActive);
 ```
 
-### Generic Classes
+## Best Practices [Core]
+
+1. Use access modifiers appropriately
+2. Prefer composition over inheritance
+3. Use abstract classes for common behavior
+4. Implement interfaces for contracts
+5. Use readonly for immutable properties
+6. Consider using static members [Common]
+7. Use proper method visibility [Common]
+8. Document public APIs
+9. Use proper constructor patterns
+10. Consider using factory methods [Advanced]
+
+## Common Patterns [Common]
+
+### Singleton Pattern [Common]
 ```typescript
-class DataStore<T> {
-    private data: T[] = [];
-
-    add(item: T): void {
-        this.data.push(item);
+class Database {
+  private static instance: Database;
+  
+  private constructor() {}
+  
+  static getInstance(): Database {
+    if (!Database.instance) {
+      Database.instance = new Database();
     }
-
-    get(index: number): T {
-        return this.data[index];
-    }
-
-    getAll(): T[] {
-        return [...this.data];
-    }
+    return Database.instance;
+  }
 }
-
-// Usage with different types
-const stringStore = new DataStore<string>();
-stringStore.add("Hello");
-stringStore.add("World");
-
-const numberStore = new DataStore<number>();
-numberStore.add(1);
-numberStore.add(2);
 ```
 
-## Best Practices
+### Factory Pattern [Common]
+```typescript
+abstract class Animal {
+  abstract makeSound(): void;
+}
 
-### Basic
-- Use access modifiers (public, private, protected) appropriately
-- Keep classes focused on a single responsibility
-- Use meaningful property and method names
+class Dog extends Animal {
+  makeSound(): void {
+    console.log("Woof!");
+  }
+}
 
-### Advanced
-- Leverage inheritance for code reuse
-- Use abstract classes for common behavior
-- Implement interfaces for better type safety
+class AnimalFactory {
+  static createAnimal(type: string): Animal {
+    switch (type) {
+      case "dog": return new Dog();
+      default: throw new Error("Invalid animal type");
+    }
+  }
+}
+```
 
-### Mastery
-- Use decorators for cross-cutting concerns
-- Implement mixins for flexible composition
-- Create generic classes for type-safe reusable components 
+## Interview Focus Areas
+
+### Core Knowledge [Core]
+- Class declaration and instantiation
+- Access modifiers
+- Basic inheritance
+- Constructor usage
+- Method definition
+
+### Common Interview Questions [Common]
+- What's the difference between public, private, and protected?
+- How does inheritance work in TypeScript?
+- What are abstract classes and when should you use them?
+- How do you implement interfaces in classes?
+
+### Advanced Topics [Advanced]
+- Abstract classes and methods
+- Static members and methods
+- Advanced inheritance patterns
+- Mixins and multiple inheritance
+
+### Mastery Level [Mastery]
+- Complex design patterns
+- Advanced class composition
+- Performance optimization in classes
+- Advanced type system features with classes 

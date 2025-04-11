@@ -1,9 +1,9 @@
-# Interview Prep
+# Interview Preparation Repository
 
-This repository contains comprehensive documentation and examples for various technical interview topics.
+A comprehensive collection of technical interview preparation materials, organized by key topics and technologies.
 
 ## Table of Contents
-- [Interview Prep](#interview-prep)
+- [Interview Preparation Repository](#interview-preparation-repository)
   - [Table of Contents](#table-of-contents)
   - [TypeScript](#typescript)
   - [Backend](#backend)
@@ -15,16 +15,16 @@ This repository contains comprehensive documentation and examples for various te
 
 ## TypeScript
 
-For comprehensive TypeScript documentation, please refer to the [TypeScript Learning Path](typescript/README.md). The documentation is organized into three levels:
+For TypeScript interview preparation, refer to the [TypeScript Reference Guide](typescript/README.md). The guide covers:
 
-- **Basic Level**: Core concepts and fundamentals
-- **Advanced Level**: Complex type system features and patterns
-- **Mastery Level**: Expert-level concepts and configurations
+- Core concepts and syntax
+- Advanced type system features
+- Common interview questions
+- Best practices and patterns
 
 ## Backend
 
 ### Projects
-
 - [ ] Express Project
   - [ ] Middleware Validation
 - [ ] NestJS
@@ -32,26 +32,30 @@ For comprehensive TypeScript documentation, please refer to the [TypeScript Lear
 
 ## Design Patterns
 
-- Types of Patterns
-- [ ] SOLID
-- [ ] Other Patterns
+- [ ] SOLID Principles
+- [ ] Creational Patterns
+- [ ] Structural Patterns
+- [ ] Behavioral Patterns
 
 ## Methodologies
 
 - [ ] Agile
 - [ ] Scrum
+- [ ] CI/CD
+- [ ] DevOps
 
 ## Data Structures
 
-- [ ] Arrays
-- [ ] Hashmaps
-- [ ] Sets
+- [ ] Arrays and Strings
+- [ ] Hashmaps and Sets
 - [ ] Linked Lists
-- [ ] Priority Queues
-- [ ] Stacks
-- [ ] Queues
+- [ ] Trees and Graphs
+- [ ] Stacks and Queues
+- [ ] Heaps and Priority Queues
 
 ## Unit Testing
 
-- [ ] Unit Test Basics
-- [ ] Advanced Testing Techniques
+- [ ] Testing Fundamentals
+- [ ] Test-Driven Development
+- [ ] Mocking and Stubbing
+- [ ] Testing Best Practices
