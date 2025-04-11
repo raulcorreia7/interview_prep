@@ -135,25 +135,25 @@ const route: ApiRoute = 'GET /users';
 
 ## Interview Focus Areas
 
-### Core Knowledge [Core]
+### Core Knowledge
 - Basic type features
 - Union/Intersection types
 - Type guards
 - Type inference
 
-### Common Interview Questions [Common]
+### Common Interview Questions
 - How do you use generics?
 - How do you handle type narrowing?
 - How do you use mapped types?
 - How do you implement type safety?
 
-### Advanced Topics [Advanced]
+### Advanced Topics
 - Conditional types
 - Discriminated unions
 - Branded types
 - Type manipulation
 
-### Mastery Level [Mastery]
+### Mastery Level
 - Recursive types
 - Template literal types
 - Complex type patterns

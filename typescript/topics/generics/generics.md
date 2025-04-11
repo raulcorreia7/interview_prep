@@ -1,18 +1,18 @@
-# Generics in TypeScript
+# TypeScript Generics
 
 ## Basic Generics [Core]
 
-### Generic Functions [Core]
+### Generic Functions
 ```typescript
 function identity<T>(arg: T): T {
   return arg;
 }
 
 let output = identity<string>("hello");
-let output2 = identity("hello"); // Type inference
+let output2 = identity("hello"); // type inference
 ```
 
-### Generic Interfaces [Common]
+### Generic Interfaces
 ```typescript
 interface GenericIdentityFn<T> {
   (arg: T): T;
@@ -25,9 +25,20 @@ function identity<T>(arg: T): T {
 let myIdentity: GenericIdentityFn<number> = identity;
 ```
 
-## Generic Classes [Common]
+## Generic Constraints [Common]
 
-### Basic Generic Class [Common]
+### Using Type Parameters
+```typescript
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+  return obj[key];
+}
+
+let x = { a: 1, b: 2, c: 3, d: 4 };
+getProperty(x, "a"); // okay
+getProperty(x, "m"); // error
+```
+
+### Generic Classes
 ```typescript
 class GenericNumber<T> {
   zeroValue: T;
@@ -39,32 +50,9 @@ myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function(x, y) { return x + y; };
 ```
 
-### Generic Constraints [Common]
-```typescript
-interface Lengthwise {
-  length: number;
-}
-
-function loggingIdentity<T extends Lengthwise>(arg: T): T {
-  console.log(arg.length);
-  return arg;
-}
-```
-
 ## Advanced Generics [Advanced]
 
-### Generic Constraints with Keyof [Advanced]
-```typescript
-function getProperty<T, K extends keyof T>(obj: T, key: K) {
-  return obj[key];
-}
-
-let x = { a: 1, b: 2, c: 3, d: 4 };
-getProperty(x, "a");
-getProperty(x, "m"); // Error: Argument of type '"m"' is not assignable to parameter of type '"a" | "b" | "c" | "d"'
-```
-
-### Generic Type Aliases [Advanced]
+### Generic Type Aliases
 ```typescript
 type Container<T> = { value: T };
 
@@ -75,70 +63,64 @@ type Tree<T> = {
 };
 ```
 
-## Best Practices [Core]
-
-1. Use generics for reusable components
-2. Use type inference when possible
-3. Add constraints when needed
-4. Use proper naming conventions
-5. Document generic parameters
-6. Consider using default types [Common]
-7. Use proper type constraints [Common]
-8. Document complex generics
-9. Use proper type inference
-10. Consider using mapped types [Advanced]
-
-## Common Patterns [Common]
-
-### Factory Pattern [Common]
+### Generic Defaults
 ```typescript
-interface Factory<T> {
-  create(): T;
+interface A<T = string> {
+  name: T;
 }
 
-class NumberFactory implements Factory<number> {
-  create(): number {
-    return Math.random();
-  }
-}
+const a: A = { name: "hello" }; // T is string
+const b: A<number> = { name: 123 }; // T is number
 ```
 
-### Repository Pattern [Common]
-```typescript
-interface Repository<T> {
-  findById(id: string): T | undefined;
-  save(entity: T): void;
-  delete(id: string): void;
-}
+## Generic Patterns [Mastery]
 
-class UserRepository implements Repository<User> {
-  // Implementation
-}
+### Mapped Types with Generics
+```typescript
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P];
+};
+```
+
+### Conditional Types with Generics
+```typescript
+type ExtractType<T> = T extends (infer U)[] ? U : never;
+type NonNullable<T> = T extends null | undefined ? never : T;
+
+type ArrayType = ExtractType<string[]>; // string
+type NonNullString = NonNullable<string | null>; // string
 ```
 
 ## Interview Focus Areas
 
-### Core Knowledge [Core]
+### Core Knowledge
 - Basic generic functions
-- Generic type parameters
-- Type inference with generics
-- Basic generic constraints
 - Generic interfaces
+- Type inference with generics
+- Generic constraints
 
-### Common Interview Questions [Common]
-- What are generics and why are they useful?
-- How do you use generic constraints?
-- What's the difference between any and generic types?
-- How do you implement generic interfaces?
+### Common Interview Questions
+- What are generics and why use them?
+- How do generic constraints work?
+- How does type inference work with generics?
+- What are generic classes?
 
-### Advanced Topics [Advanced]
+### Advanced Topics
 - Generic type aliases
-- Advanced constraints
+- Generic defaults
 - Mapped types with generics
 - Conditional types with generics
 
-### Mastery Level [Mastery]
+### Mastery Level
 - Complex generic patterns
-- Advanced type inference
-- Performance implications of generics
-- Advanced generic composition
+- Advanced type manipulation
+- Generic type system design
+- Performance considerations

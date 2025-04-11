@@ -60,19 +60,19 @@ A focused guide on TypeScript language features for senior/lead interviews.
 
 ## Interview Focus Areas
 
-### Core Knowledge [Core]
+### Core Knowledge
 - [Type system fundamentals](./topics/type-system/type-system.md)
 - [Basic type features](./topics/type-features/type-features.md#basic-types)
 - [Generic patterns](./topics/generics/generics.md)
 - [Type inference](./topics/type-system/type-system.md#type-inference)
 
-### Advanced Topics [Advanced]
+### Advanced Topics
 - [Type manipulation](./topics/type-features/type-features.md#type-manipulation)
 - [Advanced generics](./topics/generics/generics.md#advanced-generics)
 - [Type system patterns](./topics/type-features/type-features.md#type-system-patterns)
 - [Declaration merging](./topics/interfaces/interfaces.md#declaration-merging)
 
-### Mastery Level [Mastery]
+### Mastery Level
 - [Complex type patterns](./topics/type-features/type-features.md#type-manipulation)
 - [Advanced type manipulation](./topics/type-features/type-features.md#type-manipulation)
 - [Type system design](./topics/type-system/type-system.md#type-system-design)

@@ -1,65 +1,47 @@
-# Types in TypeScript
+# TypeScript Types
 
 ## Basic Types [Core]
 
-### Primitive Types [Core]
+### Primitive Types
 ```typescript
 let str: string = "hello";
 let num: number = 42;
 let bool: boolean = true;
 let undef: undefined = undefined;
 let nul: null = null;
-let sym: symbol = Symbol("key");
 ```
 
-### Literal Types [Common]
+### Literal Types
 ```typescript
-let direction: "north" | "south" | "east" | "west";
-let status: 200 | 404 | 500;
-```
+type Direction = "north" | "south" | "east" | "west";
+type Status = 200 | 404 | 500;
 
-## Object Types [Core]
+function move(direction: Direction): void {
+  // ...
+}
 
-### Interfaces [Core]
-```typescript
-interface User {
-  name: string;
-  age: number;
-  email?: string;
-  readonly id: number;
+function handleStatus(status: Status): void {
+  // ...
 }
 ```
 
-### Type Aliases [Common]
-```typescript
-type Point = {
-  x: number;
-  y: number;
-};
+## Advanced Types [Advanced]
 
+### Union Types
+```typescript
 type ID = string | number;
-```
-
-### Index Signatures [Common]
-```typescript
-interface StringArray {
-  [index: number]: string;
-}
-
-interface Dictionary {
-  [key: string]: number;
-}
-```
-
-## Union and Intersection Types [Common]
-
-### Union Types [Common]
-```typescript
 type Status = "success" | "error" | "loading";
-type ID = string | number;
+
+function processID(id: ID): void {
+  if (typeof id === "string") {
+    console.log(id.toUpperCase());
+  } else {
+    console.log(id.toFixed(2));
+  }
+}
 ```
 
-### Intersection Types [Common]
+### Intersection Types
 ```typescript
 interface HasName {
   name: string;
@@ -70,121 +52,94 @@ interface HasAge {
 }
 
 type Person = HasName & HasAge;
-```
 
-## Advanced Types [Advanced]
-
-### Mapped Types [Advanced]
-```typescript
-type Readonly<T> = {
-  readonly [P in keyof T]: T[P];
-};
-
-type Partial<T> = {
-  [P in keyof T]?: T[P];
+const person: Person = {
+  name: "John",
+  age: 30
 };
 ```
 
-### Conditional Types [Advanced]
-```typescript
-type NonNullable<T> = T extends null | undefined ? never : T;
-type ExtractType<T, U> = T extends U ? T : never;
-```
+## Type System Patterns [Advanced]
 
-## Utility Types [Common]
-
-### Common Utility Types [Common]
-```typescript
-// Built-in utility types
-type PartialUser = Partial<User>;
-type ReadonlyUser = Readonly<User>;
-type PickUser = Pick<User, "name" | "age">;
-type OmitUser = Omit<User, "email">;
-```
-
-### Custom Utility Types [Advanced]
-```typescript
-type Nullable<T> = T | null;
-type Promisify<T> = Promise<T>;
-type DeepReadonly<T> = {
-  readonly [P in keyof T]: DeepReadonly<T[P]>;
-};
-```
-
-## Best Practices [Core]
-
-1. Use interfaces for object shapes
-2. Use type aliases for unions and intersections
-3. Prefer readonly for immutable properties
-4. Use strict null checks
-5. Avoid using any type
-6. Use proper type guards [Common]
-7. Consider using branded types [Advanced]
-8. Use proper type inference
-9. Document complex types
-10. Use utility types when appropriate
-
-## Common Patterns [Common]
-
-### Type Guards [Common]
+### Type Guards
 ```typescript
 function isString(value: unknown): value is string {
   return typeof value === "string";
 }
 
-function processValue(value: string | number) {
+function processValue(value: unknown): void {
   if (isString(value)) {
-    return value.toUpperCase();
+    console.log(value.toUpperCase());
   }
-  return value.toFixed(2);
 }
 ```
 
-### Discriminated Unions [Common]
+### Type Predicates
 ```typescript
-interface Square {
-  kind: "square";
-  size: number;
+interface Fish {
+  swim(): void;
 }
 
-interface Circle {
-  kind: "circle";
-  radius: number;
+interface Bird {
+  fly(): void;
 }
 
-type Shape = Square | Circle;
-
-function area(shape: Shape): number {
-  switch (shape.kind) {
-    case "square": return shape.size * shape.size;
-    case "circle": return Math.PI * shape.radius * shape.radius;
-  }
+function isFish(pet: Fish | Bird): pet is Fish {
+  return (pet as Fish).swim !== undefined;
 }
+```
+
+## Utility Types [Mastery]
+
+### Built-in Utility Types
+```typescript
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P];
+};
+
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+```
+
+### Custom Utility Types
+```typescript
+type Nullable<T> = T | null;
+type NonNullable<T> = T extends null | undefined ? never : T;
+
+type DeepReadonly<T> = {
+  readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
+};
 ```
 
 ## Interview Focus Areas
 
-### Core Knowledge [Core]
-- Basic type annotations
-- Interface definitions
-- Type aliases
-- Union and intersection types
+### Core Knowledge
+- Basic types
+- Literal types
+- Type annotations
 - Type inference
 
-### Common Interview Questions [Common]
+### Common Interview Questions
+- What are the basic types in TypeScript?
+- How do literal types work?
 - What's the difference between type and interface?
-- How do you handle nullable types in TypeScript?
-- What are utility types and how do you use them?
-- How do you implement type guards?
+- How does type inference work?
 
-### Advanced Topics [Advanced]
-- Mapped types
-- Conditional types
-- Branded types
-- Advanced type inference
+### Advanced Topics
+- Union types
+- Intersection types
+- Type guards
+- Type predicates
 
-### Mastery Level [Mastery]
-- Complex type manipulation
-- Advanced generic types
-- Type system internals
-- Performance implications of complex types
+### Mastery Level
+- Utility types
+- Custom type manipulation
+- Advanced type patterns
+- Type system design

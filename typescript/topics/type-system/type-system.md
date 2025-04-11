@@ -1,155 +1,134 @@
-# Type System in TypeScript
-
-## Basic Types [Core]
-
-### Primitive Types [Core]
-```typescript
-let str: string = "hello";
-let num: number = 42;
-let bool: boolean = true;
-let undef: undefined = undefined;
-let nul: null = null;
-```
-
-### Type Annotations [Core]
-```typescript
-function greet(name: string): string {
-  return `Hello, ${name}!`;
-}
-
-const age: number = 30;
-```
+# TypeScript Type System
 
 ## Type Inference [Core]
 
-### Basic Inference [Core]
+### Basic Inference
 ```typescript
-let x = 10;        // TypeScript infers number
-let y = "hello";   // TypeScript infers string
+let x = 3; // x is inferred as number
+let y = "hello"; // y is inferred as string
 ```
 
-### Contextual Typing [Common]
+### Contextual Typing
 ```typescript
 window.onmousedown = function(mouseEvent) {
-  console.log(mouseEvent.button);  // TypeScript knows this is a MouseEvent
+  console.log(mouseEvent.button); // OK
+  console.log(mouseEvent.kangaroo); // Error
 };
-```
-
-## Advanced Types [Advanced]
-
-### Union Types [Common]
-```typescript
-type Status = "success" | "error" | "loading";
-type ID = string | number;
-```
-
-### Intersection Types [Common]
-```typescript
-interface HasName {
-  name: string;
-}
-
-interface HasAge {
-  age: number;
-}
-
-type Person = HasName & HasAge;
 ```
 
 ## Type Guards [Common]
 
-### Type Predicates [Common]
+### Type Predicates
 ```typescript
 function isString(value: unknown): value is string {
-  return typeof value === "string";
+  return typeof value === 'string';
 }
 
-function processValue(value: string | number) {
+function processValue(value: unknown) {
   if (isString(value)) {
-    return value.toUpperCase();
+    // value is string here
+    console.log(value.toUpperCase());
   }
-  return value.toFixed(2);
 }
 ```
 
-### Discriminated Unions [Common]
+### Discriminated Unions
 ```typescript
 interface Square {
   kind: "square";
   size: number;
 }
 
-interface Circle {
-  kind: "circle";
-  radius: number;
+interface Rectangle {
+  kind: "rectangle";
+  width: number;
+  height: number;
 }
 
-type Shape = Square | Circle;
+type Shape = Square | Rectangle;
 
-function area(shape: Shape): number {
-  switch (shape.kind) {
-    case "square": return shape.size * shape.size;
-    case "circle": return Math.PI * shape.radius * shape.radius;
+function area(s: Shape) {
+  switch (s.kind) {
+    case "square": return s.size * s.size;
+    case "rectangle": return s.width * s.height;
   }
 }
 ```
 
-## Best Practices [Core]
+## Type Compatibility [Advanced]
 
-1. Use explicit types for public APIs
-2. Let TypeScript infer types when obvious
-3. Use proper type guards
-4. Avoid using any type
-5. Use proper type annotations
-6. Consider using type aliases [Common]
-7. Use proper type constraints [Common]
-8. Document complex types
-9. Use proper type inference
-10. Consider using utility types [Advanced]
-
-## Common Patterns [Common]
-
-### Type Aliases [Common]
+### Structural Typing
 ```typescript
-type Point = {
+interface Point {
   x: number;
   y: number;
-};
+}
 
-type ID = string | number;
+function logPoint(p: Point) {
+  console.log(`${p.x}, ${p.y}`);
+}
+
+const point = { x: 12, y: 26, z: 89 };
+logPoint(point); // OK, extra properties allowed
 ```
 
-### Utility Types [Common]
+### Excess Property Checks
 ```typescript
-type PartialUser = Partial<User>;
-type ReadonlyUser = Readonly<User>;
-type PickUser = Pick<User, "name" | "age">;
-type OmitUser = Omit<User, "email">;
+interface Point {
+  x: number;
+  y: number;
+}
+
+function createPoint(point: Point): Point {
+  return point;
+}
+
+// Error: Object literal may only specify known properties
+createPoint({ x: 1, y: 2, z: 3 });
+```
+
+## Type System Design [Mastery]
+
+### Type Operations
+```typescript
+type Nullable<T> = T | null;
+type Readonly<T> = { readonly [P in keyof T]: T[P] };
+type Partial<T> = { [P in keyof T]?: T[P] };
+```
+
+### Advanced Type Patterns
+```typescript
+type DeepReadonly<T> = {
+  readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
+};
+
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
 ```
 
 ## Interview Focus Areas
 
-### Core Knowledge [Core]
-- Basic type annotations
+### Core Knowledge
 - Type inference
-- Primitive types
 - Basic type guards
 - Type compatibility
+- Structural typing
 
-### Common Interview Questions [Common]
-- What's the difference between type and interface?
-- How does type inference work in TypeScript?
+### Common Interview Questions
+- How does TypeScript handle type inference?
 - What are type guards and how do you use them?
-- How do you handle nullable types?
+- How does structural typing work?
+- What are excess property checks?
 
-### Advanced Topics [Advanced]
-- Union and intersection types
-- Discriminated unions
-- Mapped types
-- Conditional types
+### Advanced Topics
+- Advanced type guards
+- Type compatibility rules
+- Type operations
+- Type system design
 
-### Mastery Level [Mastery]
-- Advanced type manipulation
-- Type system internals
-- Performance implications
-- Complex type patterns 
+### Mastery Level
+- Complex type patterns
+- Advanced type operations
+- Type system design
+- Performance considerations 
