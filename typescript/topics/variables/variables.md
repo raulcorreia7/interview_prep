@@ -2,14 +2,14 @@
 
 ## Variable Declarations [Core]
 
-### var, let, const [Core]
+### var, let, const
 ```typescript
 var x = 10;        // Function-scoped
 let y = 20;        // Block-scoped
 const z = 30;      // Block-scoped, immutable reference
 ```
 
-### Type Annotations [Core]
+### Type Annotations
 ```typescript
 let name: string = "John";
 let age: number = 30;
@@ -18,7 +18,7 @@ let isActive: boolean = true;
 
 ## Variable Types [Core]
 
-### Primitive Types [Core]
+### Primitive Types
 ```typescript
 // Basic types
 let str: string = "hello";
@@ -46,7 +46,7 @@ let user: { name: string; age: number } = {
 
 ## Type Inference [Core]
 
-### Basic Inference [Core]
+### Basic Inference
 ```typescript
 let x = 10;        // TypeScript infers number
 let y = "hello";   // TypeScript infers string
@@ -61,7 +61,7 @@ window.onmousedown = function(mouseEvent) {
 
 ## Variable Scope [Core]
 
-### Block Scope [Core]
+### Block Scope
 ```typescript
 function example() {
   if (true) {
@@ -73,7 +73,7 @@ function example() {
 }
 ```
 
-### Function Scope [Core]
+### Function Scope
 ```typescript
 function example() {
   var x = 10;
@@ -99,7 +99,7 @@ function example() {
 
 ## Common Patterns [Common]
 
-### Type Aliases [Common]
+### Type Aliases
 ```typescript
 type Point = {
   x: number;
@@ -126,28 +126,34 @@ let user: User = { id: 1, name: "John" };
 // user.id = 2; // Error: Cannot assign to 'id' because it is a read-only property
 ```
 
+## Related Topics
+- [Types](./../types/types.md)
+- [Type System](./../type-system/type-system.md)
+- [Interfaces](./../interfaces/interfaces.md)
+- [Functions](./../functions/functions.md)
+
 ## Interview Focus Areas
 
-### Core Knowledge [Core]
+### Core Knowledge
 - Difference between var, let, and const
 - Basic type annotations
 - Type inference
 - Variable scoping rules
 - Primitive types
 
-### Common Interview Questions [Common]
+### Common Interview Questions
 - What's the difference between let and const?
 - When would you use type annotations vs. type inference?
 - How does variable hoisting work in TypeScript?
 - What are the different ways to declare variables in TypeScript?
 
-### Advanced Topics [Advanced]
+### Advanced Topics
 - Const assertions
 - Type narrowing
 - Discriminated unions
 - Advanced type inference patterns
 
-### Mastery Level [Mastery]
+### Mastery Level
 - Complex type inference scenarios
 - Advanced type manipulation
 - Performance implications of type annotations

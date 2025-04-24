@@ -4,53 +4,49 @@
 
 ### Basic Inference
 ```typescript
-let x = 3; // x is inferred as number
-let y = "hello"; // y is inferred as string
+let x = 10;        // TypeScript infers number
+let y = "hello";   // TypeScript infers string
+let z = true;      // TypeScript infers boolean
 ```
 
 ### Contextual Typing
 ```typescript
 window.onmousedown = function(mouseEvent) {
-  console.log(mouseEvent.button); // OK
-  console.log(mouseEvent.kangaroo); // Error
+  console.log(mouseEvent.button);  // TypeScript knows this is a MouseEvent
 };
 ```
 
 ## Type Guards [Common]
 
-### Type Predicates
+### typeof Guards
 ```typescript
-function isString(value: unknown): value is string {
-  return typeof value === 'string';
-}
-
-function processValue(value: unknown) {
-  if (isString(value)) {
-    // value is string here
-    console.log(value.toUpperCase());
+function padLeft(value: string, padding: string | number) {
+  if (typeof padding === "number") {
+    return Array(padding + 1).join(" ") + value;
   }
+  return padding + value;
 }
 ```
 
-### Discriminated Unions
+### instanceof Guards
 ```typescript
-interface Square {
-  kind: "square";
-  size: number;
+class Bird {
+  fly() {
+    console.log("flying");
+  }
 }
 
-interface Rectangle {
-  kind: "rectangle";
-  width: number;
-  height: number;
+class Fish {
+  swim() {
+    console.log("swimming");
+  }
 }
 
-type Shape = Square | Rectangle;
-
-function area(s: Shape) {
-  switch (s.kind) {
-    case "square": return s.size * s.size;
-    case "rectangle": return s.width * s.height;
+function move(pet: Bird | Fish) {
+  if (pet instanceof Bird) {
+    pet.fly();
+  } else {
+    pet.swim();
   }
 }
 ```
@@ -64,48 +60,65 @@ interface Point {
   y: number;
 }
 
-function logPoint(p: Point) {
-  console.log(`${p.x}, ${p.y}`);
+function printPoint(p: Point) {
+  console.log(p.x, p.y);
 }
 
-const point = { x: 12, y: 26, z: 89 };
-logPoint(point); // OK, extra properties allowed
+const point = { x: 10, y: 20, z: 30 };
+printPoint(point); // OK, extra properties are allowed
 ```
 
-### Excess Property Checks
+### Function Compatibility
 ```typescript
-interface Point {
-  x: number;
-  y: number;
-}
+let x = (a: number) => 0;
+let y = (b: number, s: string) => 0;
 
-function createPoint(point: Point): Point {
-  return point;
-}
-
-// Error: Object literal may only specify known properties
-createPoint({ x: 1, y: 2, z: 3 });
+y = x; // OK
+x = y; // Error
 ```
 
 ## Type System Design [Mastery]
 
-### Type Operations
+### Type Safety
 ```typescript
-type Nullable<T> = T | null;
-type Readonly<T> = { readonly [P in keyof T]: T[P] };
-type Partial<T> = { [P in keyof T]?: T[P] };
-```
-
-### Advanced Type Patterns
-```typescript
-type DeepReadonly<T> = {
-  readonly [P in keyof T]: T[P] extends object ? DeepReadonly<T[P]> : T[P];
+type User = {
+  id: number;
+  name: string;
+  email: string;
 };
 
-type DeepPartial<T> = {
-  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
-};
+function createUser(user: Partial<User>): User {
+  return {
+    id: user.id ?? 0,
+    name: user.name ?? "",
+    email: user.email ?? ""
+  };
+}
 ```
+
+### Type System Patterns
+```typescript
+type Result<T> = 
+  | { type: "success"; value: T }
+  | { type: "error"; error: Error };
+
+function processResult<T>(result: Result<T>): void {
+  switch (result.type) {
+    case "success":
+      console.log(result.value);
+      break;
+    case "error":
+      console.error(result.error);
+      break;
+  }
+}
+```
+
+## Related Topics
+- [Types](./../types/types.md)
+- [Variables](./../variables/variables.md)
+- [Interfaces](./../interfaces/interfaces.md)
+- [Type Features](./../type-features/type-features.md)
 
 ## Interview Focus Areas
 
@@ -116,19 +129,19 @@ type DeepPartial<T> = {
 - Structural typing
 
 ### Common Interview Questions
-- How does TypeScript handle type inference?
+- How does TypeScript's type inference work?
 - What are type guards and how do you use them?
-- How does structural typing work?
-- What are excess property checks?
+- How does structural typing work in TypeScript?
+- What's the difference between nominal and structural typing?
 
 ### Advanced Topics
 - Advanced type guards
-- Type compatibility rules
-- Type operations
-- Type system design
+- Function compatibility
+- Type system design patterns
+- Type safety patterns
 
 ### Mastery Level
-- Complex type patterns
-- Advanced type operations
-- Type system design
-- Performance considerations 
+- Complex type system patterns
+- Type system architecture
+- Performance considerations
+- Compiler optimization techniques 

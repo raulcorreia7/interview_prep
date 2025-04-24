@@ -118,6 +118,12 @@ type DeepReadonly<T> = {
 };
 ```
 
+## Related Topics
+- [Variables](./../variables/variables.md)
+- [Type System](./../type-system/type-system.md)
+- [Interfaces](./../interfaces/interfaces.md)
+- [Type Features](./../type-features/type-features.md)
+
 ## Interview Focus Areas
 
 ### Core Knowledge
