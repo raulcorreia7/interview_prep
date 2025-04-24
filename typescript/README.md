@@ -3,9 +3,11 @@
 A structured guide to prepare for TypeScript interviews, organized by topic and difficulty level.
 
 ## Core Concepts [Core]
+
 Essential knowledge for any TypeScript developer.
 
 ### Variables and Basic Types
+
 - [Type annotations and inference](./topics/variables/variables.md#type-annotations)
 - [Basic types (string, number, boolean)](./topics/variables/variables.md#primitive-types)
 - [Type assertions and narrowing](./topics/variables/variables.md#type-inference)
@@ -13,6 +15,7 @@ Essential knowledge for any TypeScript developer.
 - [Type definitions and aliases](./topics/variables/variables.md#type-aliases)
 
 ### Functions
+
 - [Function declarations and expressions](./topics/functions/functions.md#function-declarations)
 - [Parameter and return types](./topics/functions/functions.md#parameter-types)
 - [Arrow functions](./topics/functions/functions.md#arrow-functions)
@@ -21,6 +24,7 @@ Essential knowledge for any TypeScript developer.
 - [Optional and default parameters](./topics/functions/functions.md#optional-parameters)
 
 ### Interfaces and Types
+
 - [Interface definitions](./topics/interfaces/interfaces.md#interface-definitions)
 - [Optional and readonly properties](./topics/interfaces/interfaces.md#optional-properties)
 - [Index signatures](./topics/interfaces/interfaces.md#index-signatures)
@@ -29,9 +33,11 @@ Essential knowledge for any TypeScript developer.
 - [Type unions and intersections](./topics/type-features/type-features.md#union-types)
 
 ## Common Patterns [Common]
+
 Frequently used TypeScript features in real-world applications.
 
 ### Classes and OOP
+
 - [Class declarations and constructors](./topics/classes/classes.md#class-declarations)
 - [Access modifiers (public, private, protected)](./topics/classes/classes.md#access-modifiers)
 - [Inheritance and abstract classes](./topics/classes/classes.md#inheritance)
@@ -40,6 +46,7 @@ Frequently used TypeScript features in real-world applications.
 - [Interface implementation](./topics/interfaces/interfaces.md#interface-implementation)
 
 ### Generics
+
 - [Generic functions and interfaces](./topics/generics/generics.md#generic-functions)
 - [Generic constraints](./topics/generics/generics.md#generic-constraints)
 - [Type parameters](./topics/generics/generics.md#type-parameters)
@@ -48,6 +55,7 @@ Frequently used TypeScript features in real-world applications.
 - [Common generic patterns](./topics/generics/generics.md#generic-patterns)
 
 ### Modules and Organization
+
 - [ES modules and CommonJS](./topics/modules/modules.md#module-syntax)
 - [Module resolution](./topics/modules/modules.md#module-resolution)
 - [Namespaces](./topics/modules/modules.md#namespaces)
@@ -56,9 +64,11 @@ Frequently used TypeScript features in real-world applications.
 - [Code organization patterns](./topics/modules/modules.md#module-organization)
 
 ## Advanced Features [Advanced]
+
 Complex TypeScript features for senior developers.
 
 ### Type System Mastery
+
 - [Type guards and predicates](./topics/type-system/type-system.md#type-guards)
 - [Discriminated unions](./topics/type-features/type-features.md#discriminated-unions)
 - [Mapped and conditional types](./topics/type-features/type-features.md#mapped-types)
@@ -67,6 +77,7 @@ Complex TypeScript features for senior developers.
 - [Declaration merging](./topics/interfaces/interfaces.md#declaration-merging)
 
 ### Error Handling
+
 - [Try/catch with proper typing](./topics/error-handling/error-handling.md#try-catch)
 - [Custom error classes](./topics/error-handling/error-handling.md#custom-errors)
 - [Error boundaries](./topics/error-handling/error-handling.md#error-boundaries)
@@ -75,6 +86,7 @@ Complex TypeScript features for senior developers.
 - [Error handling middleware](./topics/error-handling/error-handling.md#error-middleware)
 
 ### Async Programming
+
 - [Promise types and utilities](./topics/async/async.md#promises)
 - [Async/await patterns](./topics/async/async.md#async-await)
 - [Error handling in async code](./topics/async/async.md#error-handling)
@@ -83,9 +95,11 @@ Complex TypeScript features for senior developers.
 - [Async iterators](./topics/async/async.md#async-iterators)
 
 ## Expert Level [Mastery]
+
 Advanced TypeScript concepts for lead developers.
 
 ### Advanced Type System
+
 - [Complex type patterns](./topics/type-features/type-features.md#type-manipulation)
 - [Advanced type operations](./topics/type-features/type-features.md#advanced-types)
 - [Type system performance](./topics/configuration/configuration.md#performance)
@@ -94,6 +108,7 @@ Advanced TypeScript concepts for lead developers.
 - [Type safety patterns](./topics/type-system/type-system.md#type-safety)
 
 ### Decorators and Metadata
+
 - [Class, method, and property decorators](./topics/decorators/decorators.md#class-decorators)
 - [Parameter decorators](./topics/decorators/decorators.md#parameter-decorators)
 - [Decorator factories](./topics/decorators/decorators.md#decorator-factories)
@@ -102,6 +117,7 @@ Advanced TypeScript concepts for lead developers.
 - [Runtime type information](./topics/decorators/decorators.md#runtime-types)
 
 ### Functional Programming
+
 - [Pure functions and immutability](./topics/functional/functional.md#pure-functions)
 - [Higher-order functions](./topics/functional/functional.md#higher-order)
 - [Function composition](./topics/functional/functional.md#composition)
@@ -110,6 +126,7 @@ Advanced TypeScript concepts for lead developers.
 - [Functional utilities](./topics/functional/functional.md#utilities)
 
 ### Backend Development
+
 - [API type definitions](./topics/backend-patterns/backend-patterns.md#api-types)
 - [Database and ORM types](./topics/backend-patterns/backend-patterns.md#database-types)
 - [Middleware typing](./topics/backend-patterns/backend-patterns.md#middleware)
@@ -120,6 +137,7 @@ Advanced TypeScript concepts for lead developers.
 ## Interview Preparation
 
 ### Common Interview Questions
+
 1. [Explain TypeScript's type system](./topics/type-system/type-system.md)
 2. [Difference between interface and type](./topics/types/types.md#basic-types)
 3. [How generics work in TypeScript](./topics/generics/generics.md)
@@ -128,6 +146,7 @@ Advanced TypeScript concepts for lead developers.
 6. [Module system organization](./topics/modules/modules.md#organization)
 
 ### Advanced Questions
+
 1. [Complex type manipulation](./topics/type-features/type-features.md#type-manipulation)
 2. [Advanced generic patterns](./topics/generics/generics.md#advanced-patterns)
 3. [Type system design decisions](./topics/type-system/type-system.md#type-system-design)
@@ -136,6 +155,7 @@ Advanced TypeScript concepts for lead developers.
 6. [Functional programming in TypeScript](./topics/functional/functional.md)
 
 ### System Design Questions
+
 1. [Type-safe API design](./topics/backend-patterns/backend-patterns.md#api-design)
 2. [Error handling architecture](./topics/error-handling/error-handling.md#architecture)
 3. [Module organization strategy](./topics/modules/modules.md#organization-strategy)
@@ -146,13 +166,16 @@ Advanced TypeScript concepts for lead developers.
 ## Resources
 
 ### Official Documentation
+
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 - [TypeScript Playground](https://www.typescriptlang.org/play)
 
 ### Learning Resources
+
 - [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/)
 - [TypeScript Weekly](https://typescript-weekly.com/)
 
 ### Practice
+
 - [Type Challenges](https://github.com/type-challenges/type-challenges)
-- [TypeScript Exercises](https://typescript-exercises.github.io/) 
+- [TypeScript Exercises](https://typescript-exercises.github.io/)

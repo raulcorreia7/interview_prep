@@ -3,6 +3,7 @@
 ## Class Basics [Core]
 
 ### Class Declaration [Core]
+
 ```typescript
 class Person {
   name: string;
@@ -20,6 +21,7 @@ class Person {
 ```
 
 ### Access Modifiers [Core]
+
 ```typescript
 class BankAccount {
   private balance: number;
@@ -37,6 +39,7 @@ class BankAccount {
 ## Inheritance [Common]
 
 ### Basic Inheritance [Common]
+
 ```typescript
 class Animal {
   constructor(public name: string) {}
@@ -54,6 +57,7 @@ class Dog extends Animal {
 ```
 
 ### Method Overriding [Common]
+
 ```typescript
 class Animal {
   move(distance: number): void {
@@ -72,10 +76,11 @@ class Snake extends Animal {
 ## Advanced Features [Advanced]
 
 ### Abstract Classes [Advanced]
+
 ```typescript
 abstract class Animal {
   abstract makeSound(): void;
-  
+
   move(): void {
     console.log("Moving...");
   }
@@ -89,10 +94,11 @@ class Dog extends Animal {
 ```
 
 ### Static Members [Common]
+
 ```typescript
 class MathHelper {
   static PI: number = 3.14159;
-  
+
   static calculateArea(radius: number): number {
     return this.PI * radius * radius;
   }
@@ -102,6 +108,7 @@ class MathHelper {
 ## Interfaces and Classes [Common]
 
 ### Implementing Interfaces [Common]
+
 ```typescript
 interface ClockInterface {
   currentTime: Date;
@@ -110,7 +117,7 @@ interface ClockInterface {
 
 class Clock implements ClockInterface {
   currentTime: Date = new Date();
-  
+
   setTime(d: Date): void {
     this.currentTime = d;
   }
@@ -118,6 +125,7 @@ class Clock implements ClockInterface {
 ```
 
 ### Class as Interface [Advanced]
+
 ```typescript
 class Point {
   x: number;
@@ -145,12 +153,13 @@ interface Point3d extends Point {
 ## Common Patterns [Common]
 
 ### Singleton Pattern [Common]
+
 ```typescript
 class Database {
   private static instance: Database;
-  
+
   private constructor() {}
-  
+
   static getInstance(): Database {
     if (!Database.instance) {
       Database.instance = new Database();
@@ -161,6 +170,7 @@ class Database {
 ```
 
 ### Factory Pattern [Common]
+
 ```typescript
 abstract class Animal {
   abstract makeSound(): void;
@@ -175,8 +185,10 @@ class Dog extends Animal {
 class AnimalFactory {
   static createAnimal(type: string): Animal {
     switch (type) {
-      case "dog": return new Dog();
-      default: throw new Error("Invalid animal type");
+      case "dog":
+        return new Dog();
+      default:
+        throw new Error("Invalid animal type");
     }
   }
 }
@@ -185,6 +197,7 @@ class AnimalFactory {
 ## Interview Focus Areas
 
 ### Core Knowledge [Core]
+
 - Class declaration and instantiation
 - Access modifiers
 - Basic inheritance
@@ -192,19 +205,22 @@ class AnimalFactory {
 - Method definition
 
 ### Common Interview Questions [Common]
+
 - What's the difference between public, private, and protected?
 - How does inheritance work in TypeScript?
 - What are abstract classes and when should you use them?
 - How do you implement interfaces in classes?
 
 ### Advanced Topics [Advanced]
+
 - Abstract classes and methods
 - Static members and methods
 - Advanced inheritance patterns
 - Mixins and multiple inheritance
 
 ### Mastery Level [Mastery]
+
 - Complex design patterns
 - Advanced class composition
 - Performance optimization in classes
-- Advanced type system features with classes 
+- Advanced type system features with classes

@@ -4,9 +4,11 @@ This directory contains documentation and examples related to decorators in Type
 
 ## Quick Reference
 
-For detailed information about decorators in TypeScript, see the [Decorators Documentation](decorators.md).
+For detailed information about decorators in TypeScript, see the
+[Decorators Documentation](decorators.md).
 
 ## Topics Covered
+
 - [Class Decorators](decorators.md#class-decorators)
 - [Method Decorators](decorators.md#method-decorators)
 - [Property Decorators](decorators.md#property-decorators)
@@ -14,6 +16,7 @@ For detailed information about decorators in TypeScript, see the [Decorators Doc
 - [Best Practices](decorators.md#best-practices)
 
 ## Common Interview Questions
+
 - What are decorators and how do they work?
 - How do you create custom decorators?
 - What are the different types of decorators?
@@ -21,6 +24,7 @@ For detailed information about decorators in TypeScript, see the [Decorators Doc
 - What are the best practices for using decorators?
 
 ## Related Topics
+
 - [Classes](../classes/classes.md)
 - [Type System](../type-system/type-system.md)
-- [Advanced Types](../advanced-types/advanced-types.md) 
+- [Advanced Types](../advanced-types/advanced-types.md)

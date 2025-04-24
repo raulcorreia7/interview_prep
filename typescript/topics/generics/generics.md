@@ -3,6 +3,7 @@
 ## Basic Generics [Core]
 
 ### Generic Functions
+
 ```typescript
 function identity<T>(arg: T): T {
   return arg;
@@ -13,6 +14,7 @@ let output2 = identity("hello"); // type inference
 ```
 
 ### Generic Interfaces
+
 ```typescript
 interface GenericIdentityFn<T> {
   (arg: T): T;
@@ -28,6 +30,7 @@ let myIdentity: GenericIdentityFn<number> = identity;
 ## Generic Constraints [Common]
 
 ### Using Type Parameters
+
 ```typescript
 function getProperty<T, K extends keyof T>(obj: T, key: K) {
   return obj[key];
@@ -39,6 +42,7 @@ getProperty(x, "m"); // error
 ```
 
 ### Generic Classes
+
 ```typescript
 class GenericNumber<T> {
   zeroValue: T;
@@ -47,12 +51,15 @@ class GenericNumber<T> {
 
 let myGenericNumber = new GenericNumber<number>();
 myGenericNumber.zeroValue = 0;
-myGenericNumber.add = function(x, y) { return x + y; };
+myGenericNumber.add = function (x, y) {
+  return x + y;
+};
 ```
 
 ## Advanced Generics [Advanced]
 
 ### Generic Type Aliases
+
 ```typescript
 type Container<T> = { value: T };
 
@@ -64,6 +71,7 @@ type Tree<T> = {
 ```
 
 ### Generic Defaults
+
 ```typescript
 interface A<T = string> {
   name: T;
@@ -76,6 +84,7 @@ const b: A<number> = { name: 123 }; // T is number
 ## Generic Patterns [Mastery]
 
 ### Mapped Types with Generics
+
 ```typescript
 type Readonly<T> = {
   readonly [P in keyof T]: T[P];
@@ -91,6 +100,7 @@ type Pick<T, K extends keyof T> = {
 ```
 
 ### Conditional Types with Generics
+
 ```typescript
 type ExtractType<T> = T extends (infer U)[] ? U : never;
 type NonNullable<T> = T extends null | undefined ? never : T;
@@ -102,24 +112,28 @@ type NonNullString = NonNullable<string | null>; // string
 ## Interview Focus Areas
 
 ### Core Knowledge
+
 - Basic generic functions
 - Generic interfaces
 - Type inference with generics
 - Generic constraints
 
 ### Common Interview Questions
+
 - What are generics and why use them?
 - How do generic constraints work?
 - How does type inference work with generics?
 - What are generic classes?
 
 ### Advanced Topics
+
 - Generic type aliases
 - Generic defaults
 - Mapped types with generics
 - Conditional types with generics
 
 ### Mastery Level
+
 - Complex generic patterns
 - Advanced type manipulation
 - Generic type system design

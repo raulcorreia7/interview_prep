@@ -3,6 +3,7 @@
 ## Basic Configuration [Core]
 
 ### tsconfig.json Basics [Core]
+
 ```json
 {
   "compilerOptions": {
@@ -15,6 +16,7 @@
 ```
 
 ### Common Options [Core]
+
 ```json
 {
   "compilerOptions": {
@@ -29,6 +31,7 @@
 ## Module Configuration [Common]
 
 ### Module Resolution [Common]
+
 ```json
 {
   "compilerOptions": {
@@ -42,6 +45,7 @@
 ```
 
 ### Module Systems [Common]
+
 ```json
 {
   "compilerOptions": {
@@ -56,6 +60,7 @@
 ## Type Checking [Common]
 
 ### Strict Mode [Common]
+
 ```json
 {
   "compilerOptions": {
@@ -72,6 +77,7 @@
 ```
 
 ### Type Checking Options [Common]
+
 ```json
 {
   "compilerOptions": {
@@ -87,6 +93,7 @@
 ## Advanced Configuration [Advanced]
 
 ### Project References [Advanced]
+
 ```json
 {
   "compilerOptions": {
@@ -94,14 +101,12 @@
     "declaration": true,
     "declarationMap": true
   },
-  "references": [
-    { "path": "../shared" },
-    { "path": "../utils" }
-  ]
+  "references": [{ "path": "../shared" }, { "path": "../utils" }]
 }
 ```
 
 ### Custom Type Definitions [Advanced]
+
 ```json
 {
   "compilerOptions": {
@@ -127,6 +132,7 @@
 ## Common Patterns [Common]
 
 ### Development Configuration [Common]
+
 ```json
 {
   "compilerOptions": {
@@ -147,6 +153,7 @@
 ```
 
 ### Production Configuration [Common]
+
 ```json
 {
   "compilerOptions": {
@@ -167,6 +174,7 @@
 ## Interview Focus Areas
 
 ### Core Knowledge [Core]
+
 - Basic tsconfig.json structure
 - Common compiler options
 - Module configuration
@@ -174,19 +182,22 @@
 - Source map configuration
 
 ### Common Interview Questions [Common]
+
 - What are the key compiler options in TypeScript?
 - How do you configure module resolution?
 - What is strict mode and why is it important?
 - How do you handle type definitions?
 
 ### Advanced Topics [Advanced]
+
 - Project references
 - Custom type definitions
 - Advanced module resolution
 - Complex build configurations
 
 ### Mastery Level [Mastery]
+
 - Advanced build optimization
 - Custom compiler plugins
 - Complex project structures
-- Performance tuning 
+- Performance tuning

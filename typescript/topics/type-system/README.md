@@ -4,9 +4,11 @@ This directory contains documentation and examples related to TypeScript's type 
 
 ## Quick Reference
 
-For detailed information about the type system in TypeScript, see the [Type System Documentation](type-system.md).
+For detailed information about the type system in TypeScript, see the
+[Type System Documentation](type-system.md).
 
 ## Topics Covered
+
 - [Type Inference](type-system.md#inference)
 - [Type Compatibility](type-system.md#compatibility)
 - [Type Guards](type-system.md#type-guards)
@@ -14,6 +16,7 @@ For detailed information about the type system in TypeScript, see the [Type Syst
 - [Best Practices](type-system.md#best-practices)
 
 ## Common Interview Questions
+
 - How does TypeScript's type inference work?
 - What are the rules for type compatibility?
 - How do type guards help with type narrowing?
@@ -21,6 +24,7 @@ For detailed information about the type system in TypeScript, see the [Type Syst
 - What are the best practices for working with the type system?
 
 ## Related Topics
+
 - [Types](../types/types.md)
 - [Interfaces](../interfaces/interfaces.md)
-- [Advanced Types](../advanced-types/advanced-types.md) 
+- [Advanced Types](../advanced-types/advanced-types.md)

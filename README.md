@@ -1,8 +1,10 @@
 # Interview Preparation Repository
 
-A comprehensive collection of technical interview preparation materials, organized by key topics and technologies.
+A comprehensive collection of technical interview preparation materials, organized by key topics and
+technologies.
 
 ## Table of Contents
+
 - [Interview Preparation Repository](#interview-preparation-repository)
   - [Table of Contents](#table-of-contents)
   - [TypeScript](#typescript)
@@ -16,7 +18,8 @@ A comprehensive collection of technical interview preparation materials, organiz
 
 ## TypeScript
 
-For TypeScript interview preparation, refer to the [TypeScript Reference Guide](typescript/README.md). The guide covers:
+For TypeScript interview preparation, refer to the
+[TypeScript Reference Guide](typescript/README.md). The guide covers:
 
 - Core concepts and syntax
 - Advanced type system features
@@ -33,6 +36,7 @@ Additional Resources:
 ## Backend
 
 ### Projects
+
 - [ ] Express Project
   - [ ] Middleware Validation
 - [ ] NestJS

@@ -4,9 +4,11 @@ This directory contains documentation and examples related to interfaces in Type
 
 ## Quick Reference
 
-For detailed information about interfaces in TypeScript, see the [Interfaces Documentation](interfaces.md).
+For detailed information about interfaces in TypeScript, see the
+[Interfaces Documentation](interfaces.md).
 
 ## Topics Covered
+
 - [Interface Declarations](interfaces.md#declarations)
 - [Optional Properties](interfaces.md#optional-properties)
 - [Readonly Properties](interfaces.md#readonly-properties)
@@ -14,6 +16,7 @@ For detailed information about interfaces in TypeScript, see the [Interfaces Doc
 - [Best Practices](interfaces.md#best-practices)
 
 ## Common Interview Questions
+
 - What is the difference between interfaces and type aliases?
 - How do you handle optional properties in interfaces?
 - What are index signatures and when should you use them?
@@ -21,6 +24,7 @@ For detailed information about interfaces in TypeScript, see the [Interfaces Doc
 - What are the best practices for interface design?
 
 ## Related Topics
+
 - [Types](../types/types.md)
 - [Classes](../classes/classes.md)
-- [Type System](../type-system/type-system.md) 
+- [Type System](../type-system/type-system.md)

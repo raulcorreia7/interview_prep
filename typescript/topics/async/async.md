@@ -3,6 +3,7 @@
 ## Promises [Core]
 
 ### Basic Promises [Core]
+
 ```typescript
 const promise = new Promise<string>((resolve, reject) => {
   setTimeout(() => {
@@ -10,33 +11,36 @@ const promise = new Promise<string>((resolve, reject) => {
   }, 1000);
 });
 
-promise.then(data => console.log(data));
+promise.then((data) => console.log(data));
 ```
 
 ### Promise Chaining [Common]
+
 ```typescript
 fetchData()
-  .then(data => processData(data))
-  .then(result => saveData(result))
-  .catch(error => handleError(error));
+  .then((data) => processData(data))
+  .then((result) => saveData(result))
+  .catch((error) => handleError(error));
 ```
 
 ## Async/Await [Core]
 
 ### Basic Async/Await [Core]
+
 ```typescript
 async function fetchUserData() {
   try {
-    const response = await fetch('/api/user');
+    const response = await fetch("/api/user");
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error fetching user data:', error);
+    console.error("Error fetching user data:", error);
   }
 }
 ```
 
 ### Error Handling [Common]
+
 ```typescript
 async function processData() {
   try {
@@ -57,27 +61,23 @@ async function processData() {
 ## Advanced Patterns [Advanced]
 
 ### Promise.all [Common]
+
 ```typescript
 async function fetchMultipleData() {
-  const [userData, postsData] = await Promise.all([
-    fetchUserData(),
-    fetchPostsData()
-  ]);
+  const [userData, postsData] = await Promise.all([fetchUserData(), fetchPostsData()]);
   return { userData, postsData };
 }
 ```
 
 ### Promise.race [Advanced]
+
 ```typescript
 async function fetchWithTimeout(url: string, timeout: number) {
   const timeoutPromise = new Promise((_, reject) => {
-    setTimeout(() => reject(new Error('Timeout')), timeout);
+    setTimeout(() => reject(new Error("Timeout")), timeout);
   });
 
-  return Promise.race([
-    fetch(url),
-    timeoutPromise
-  ]);
+  return Promise.race([fetch(url), timeoutPromise]);
 }
 ```
 
@@ -97,35 +97,34 @@ async function fetchWithTimeout(url: string, timeout: number) {
 ## Common Patterns [Common]
 
 ### Retry Pattern [Common]
+
 ```typescript
-async function retry<T>(
-  operation: () => Promise<T>,
-  maxRetries: number = 3
-): Promise<T> {
+async function retry<T>(operation: () => Promise<T>, maxRetries: number = 3): Promise<T> {
   let lastError: Error;
-  
+
   for (let i = 0; i < maxRetries; i++) {
     try {
       return await operation();
     } catch (error) {
       lastError = error as Error;
-      await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, i)));
+      await new Promise((resolve) => setTimeout(resolve, 1000 * Math.pow(2, i)));
     }
   }
-  
+
   throw lastError;
 }
 ```
 
 ### Debounce Pattern [Common]
+
 ```typescript
 function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait: number
+  wait: number,
 ): (...args: Parameters<T>) => void {
   let timeout: NodeJS.Timeout;
-  
-  return function(...args: Parameters<T>) {
+
+  return function (...args: Parameters<T>) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
   };
@@ -135,6 +134,7 @@ function debounce<T extends (...args: any[]) => any>(
 ## Interview Focus Areas
 
 ### Core Knowledge [Core]
+
 - Basic promise usage
 - Async/await syntax
 - Error handling in async code
@@ -142,19 +142,22 @@ function debounce<T extends (...args: any[]) => any>(
 - Type annotations for async code
 
 ### Common Interview Questions [Common]
+
 - What's the difference between promises and async/await?
 - How do you handle errors in async code?
 - What is Promise.all and when would you use it?
 - How do you implement retry logic for async operations?
 
 ### Advanced Topics [Advanced]
+
 - Promise.race and timeout patterns
 - Advanced error handling
 - Cancellation patterns
 - Complex async flows
 
 ### Mastery Level [Mastery]
+
 - Advanced promise patterns
 - Performance optimization in async code
 - Complex error recovery
-- Advanced type inference in async code 
+- Advanced type inference in async code

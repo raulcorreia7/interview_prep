@@ -3,18 +3,21 @@
 ## API Design Patterns [Common]
 
 ### Request/Response Types
+
 ```typescript
 // API Response Type
-type ApiResponse<T> = {
-  data: T;
-  error: null;
-} | {
-  data: null;
-  error: {
-    code: string;
-    message: string;
-  };
-};
+type ApiResponse<T> =
+  | {
+      data: T;
+      error: null;
+    }
+  | {
+      data: null;
+      error: {
+        code: string;
+        message: string;
+      };
+    };
 
 // Usage
 async function getUser(id: string): Promise<ApiResponse<User>> {
@@ -25,24 +28,25 @@ async function getUser(id: string): Promise<ApiResponse<User>> {
     return {
       data: null,
       error: {
-        code: 'USER_NOT_FOUND',
-        message: 'User not found'
-      }
+        code: "USER_NOT_FOUND",
+        message: "User not found",
+      },
     };
   }
 }
 ```
 
 ### Validation Types
+
 ```typescript
 // Zod Schema Example
-import { z } from 'zod';
+import { z } from "zod";
 
 const UserSchema = z.object({
   id: z.string().uuid(),
   email: z.string().email(),
   name: z.string().min(2),
-  age: z.number().min(18).optional()
+  age: z.number().min(18).optional(),
 });
 
 type User = z.infer<typeof UserSchema>;
@@ -56,6 +60,7 @@ function validateUser(input: unknown): User {
 ## Database Patterns [Advanced]
 
 ### Entity Types
+
 ```typescript
 // Base Entity
 interface BaseEntity {
@@ -68,7 +73,7 @@ interface BaseEntity {
 interface User extends BaseEntity {
   email: string;
   name: string;
-  role: 'admin' | 'user';
+  role: "admin" | "user";
 }
 
 // Relations
@@ -81,10 +86,11 @@ interface Post extends BaseEntity {
 ```
 
 ### Repository Pattern
+
 ```typescript
 interface Repository<T extends BaseEntity> {
   findById(id: string): Promise<T | null>;
-  create(data: Omit<T, 'id' | 'createdAt' | 'updatedAt'>): Promise<T>;
+  create(data: Omit<T, "id" | "createdAt" | "updatedAt">): Promise<T>;
   update(id: string, data: Partial<T>): Promise<T>;
   delete(id: string): Promise<void>;
 }
@@ -97,21 +103,22 @@ class UserRepository implements Repository<User> {
 ## Error Handling [Common]
 
 ### Custom Error Types
+
 ```typescript
 class ApiError extends Error {
   constructor(
     public code: string,
     message: string,
-    public statusCode: number = 500
+    public statusCode: number = 500,
   ) {
     super(message);
-    this.name = 'ApiError';
+    this.name = "ApiError";
   }
 }
 
 class NotFoundError extends ApiError {
   constructor(message: string) {
-    super('NOT_FOUND', message, 404);
+    super("NOT_FOUND", message, 404);
   }
 }
 
@@ -128,17 +135,15 @@ function getUser(id: string): Promise<User> {
 ## Middleware Patterns [Advanced]
 
 ### Type-Safe Middleware
+
 ```typescript
-type Middleware<T = any> = (
-  context: T,
-  next: () => Promise<void>
-) => Promise<void>;
+type Middleware<T = any> = (context: T, next: () => Promise<void>) => Promise<void>;
 
 class Context {
   constructor(
     public request: Request,
     public response: Response,
-    public user?: User
+    public user?: User,
   ) {}
 }
 
@@ -146,7 +151,7 @@ class Context {
 const authMiddleware: Middleware<Context> = async (ctx, next) => {
   const token = ctx.request.headers.authorization;
   if (!token) {
-    throw new ApiError('UNAUTHORIZED', 'Missing token', 401);
+    throw new ApiError("UNAUTHORIZED", "Missing token", 401);
   }
   ctx.user = await validateToken(token);
   await next();
@@ -156,6 +161,7 @@ const authMiddleware: Middleware<Context> = async (ctx, next) => {
 ## Performance Patterns [Mastery]
 
 ### Caching Types
+
 ```typescript
 interface Cache<T> {
   get(key: string): Promise<T | null>;
@@ -169,22 +175,21 @@ class RedisCache<T> implements Cache<T> {
 ```
 
 ### Batch Processing
+
 ```typescript
 async function batchProcess<T, R>(
   items: T[],
   processor: (item: T) => Promise<R>,
-  batchSize: number = 10
+  batchSize: number = 10,
 ): Promise<R[]> {
   const results: R[] = [];
-  
+
   for (let i = 0; i < items.length; i += batchSize) {
     const batch = items.slice(i, i + batchSize);
-    const batchResults = await Promise.all(
-      batch.map(item => processor(item))
-    );
+    const batchResults = await Promise.all(batch.map((item) => processor(item)));
     results.push(...batchResults);
   }
-  
+
   return results;
 }
 ```
@@ -192,25 +197,29 @@ async function batchProcess<T, R>(
 ## Interview Focus Areas
 
 ### Core Knowledge [Core]
+
 - API response types
 - Basic error handling
 - Entity types
 - Validation patterns
 
 ### Common Interview Questions [Common]
+
 - How do you handle API errors?
 - How do you validate request data?
 - How do you structure your database types?
 - How do you implement middleware?
 
 ### Advanced Topics [Advanced]
+
 - Repository pattern
 - Type-safe middleware
 - Complex entity relations
 - Performance optimization
 
 ### Mastery Level [Mastery]
+
 - Advanced caching patterns
 - Complex type manipulation
 - Performance tuning
-- Architecture design 
+- Architecture design

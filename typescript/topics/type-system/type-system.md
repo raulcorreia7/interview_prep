@@ -3,22 +3,25 @@
 ## Type Inference [Core]
 
 ### Basic Inference
+
 ```typescript
-let x = 10;        // TypeScript infers number
-let y = "hello";   // TypeScript infers string
-let z = true;      // TypeScript infers boolean
+let x = 10; // TypeScript infers number
+let y = "hello"; // TypeScript infers string
+let z = true; // TypeScript infers boolean
 ```
 
 ### Contextual Typing
+
 ```typescript
-window.onmousedown = function(mouseEvent) {
-  console.log(mouseEvent.button);  // TypeScript knows this is a MouseEvent
+window.onmousedown = function (mouseEvent) {
+  console.log(mouseEvent.button); // TypeScript knows this is a MouseEvent
 };
 ```
 
 ## Type Guards [Common]
 
 ### typeof Guards
+
 ```typescript
 function padLeft(value: string, padding: string | number) {
   if (typeof padding === "number") {
@@ -29,6 +32,7 @@ function padLeft(value: string, padding: string | number) {
 ```
 
 ### instanceof Guards
+
 ```typescript
 class Bird {
   fly() {
@@ -54,6 +58,7 @@ function move(pet: Bird | Fish) {
 ## Type Compatibility [Advanced]
 
 ### Structural Typing
+
 ```typescript
 interface Point {
   x: number;
@@ -69,6 +74,7 @@ printPoint(point); // OK, extra properties are allowed
 ```
 
 ### Function Compatibility
+
 ```typescript
 let x = (a: number) => 0;
 let y = (b: number, s: string) => 0;
@@ -80,6 +86,7 @@ x = y; // Error
 ## Type System Design [Mastery]
 
 ### Type Safety
+
 ```typescript
 type User = {
   id: number;
@@ -91,16 +98,15 @@ function createUser(user: Partial<User>): User {
   return {
     id: user.id ?? 0,
     name: user.name ?? "",
-    email: user.email ?? ""
+    email: user.email ?? "",
   };
 }
 ```
 
 ### Type System Patterns
+
 ```typescript
-type Result<T> = 
-  | { type: "success"; value: T }
-  | { type: "error"; error: Error };
+type Result<T> = { type: "success"; value: T } | { type: "error"; error: Error };
 
 function processResult<T>(result: Result<T>): void {
   switch (result.type) {
@@ -115,6 +121,7 @@ function processResult<T>(result: Result<T>): void {
 ```
 
 ## Related Topics
+
 - [Types](./../types/types.md)
 - [Variables](./../variables/variables.md)
 - [Interfaces](./../interfaces/interfaces.md)
@@ -123,25 +130,29 @@ function processResult<T>(result: Result<T>): void {
 ## Interview Focus Areas
 
 ### Core Knowledge
+
 - Type inference
 - Basic type guards
 - Type compatibility
 - Structural typing
 
 ### Common Interview Questions
+
 - How does TypeScript's type inference work?
 - What are type guards and how do you use them?
 - How does structural typing work in TypeScript?
 - What's the difference between nominal and structural typing?
 
 ### Advanced Topics
+
 - Advanced type guards
 - Function compatibility
 - Type system design patterns
 - Type safety patterns
 
 ### Mastery Level
+
 - Complex type system patterns
 - Type system architecture
 - Performance considerations
-- Compiler optimization techniques 
+- Compiler optimization techniques

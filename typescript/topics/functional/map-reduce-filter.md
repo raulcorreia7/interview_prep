@@ -6,11 +6,11 @@
 const numbers = [1, 2, 3, 4, 5];
 
 // Map
-const doubled = numbers.map(n => n * 2);
+const doubled = numbers.map((n) => n * 2);
 // [2, 4, 6, 8, 10]
 
 // Filter
-const evens = numbers.filter(n => n % 2 === 0);
+const evens = numbers.filter((n) => n % 2 === 0);
 // [2, 4]
 
 // Reduce
@@ -29,16 +29,16 @@ interface User {
 }
 
 const users: User[] = [
-  { id: 1, name: 'John', age: 25, active: true },
-  { id: 2, name: 'Jane', age: 30, active: false },
-  { id: 3, name: 'Bob', age: 20, active: true }
+  { id: 1, name: "John", age: 25, active: true },
+  { id: 2, name: "Jane", age: 30, active: false },
+  { id: 3, name: "Bob", age: 20, active: true },
 ];
 
 // Type-safe map
-const userNames: string[] = users.map(user => user.name);
+const userNames: string[] = users.map((user) => user.name);
 
 // Type-safe filter
-const activeUsers: User[] = users.filter(user => user.active);
+const activeUsers: User[] = users.filter((user) => user.active);
 
 // Type-safe reduce
 const totalAge: number = users.reduce((sum, user) => sum + user.age, 0);
@@ -48,15 +48,16 @@ const totalAge: number = users.reduce((sum, user) => sum + user.age, 0);
 
 ```typescript
 const result = users
-  .filter(user => user.active)
-  .map(user => user.name)
-  .reduce((acc, name) => `${acc}, ${name}`, 'Active users:');
+  .filter((user) => user.active)
+  .map((user) => user.name)
+  .reduce((acc, name) => `${acc}, ${name}`, "Active users:");
 // "Active users: John, Bob"
 ```
 
 ## Advanced Patterns
 
 ### 1. Grouping
+
 ```typescript
 type GroupedUsers = Record<string, User[]>;
 
@@ -70,6 +71,7 @@ const groupedByAge = users.reduce<GroupedUsers>((acc, user) => {
 ```
 
 ### 2. Indexing
+
 ```typescript
 type UserIndex = Record<number, User>;
 
@@ -80,6 +82,7 @@ const userIndex = users.reduce<UserIndex>((acc, user) => {
 ```
 
 ### 3. Complex Transformations
+
 ```typescript
 interface UserStats {
   totalUsers: number;
@@ -91,27 +94,30 @@ const stats = users.reduce<UserStats>(
   (acc, user) => ({
     totalUsers: acc.totalUsers + 1,
     averageAge: (acc.averageAge * acc.totalUsers + user.age) / (acc.totalUsers + 1),
-    activeUsers: acc.activeUsers + (user.active ? 1 : 0)
+    activeUsers: acc.activeUsers + (user.active ? 1 : 0),
   }),
-  { totalUsers: 0, averageAge: 0, activeUsers: 0 }
+  { totalUsers: 0, averageAge: 0, activeUsers: 0 },
 );
 ```
 
 ## Best Practices
 
 1. **Type Safety**
+
    - Always specify return types
    - Use proper type guards
    - Validate input data
    - Handle edge cases
 
 2. **Performance**
+
    - Avoid unnecessary operations
    - Use proper data structures
    - Consider time complexity
    - Use proper caching
 
 3. **Readability**
+
    - Use meaningful variable names
    - Keep operations focused
    - Use proper documentation
@@ -126,6 +132,7 @@ const stats = users.reduce<UserStats>(
 ## Common Patterns
 
 1. **Data Transformation**
+
 ```typescript
 interface RawData {
   id: string;
@@ -141,15 +148,16 @@ interface ProcessedData {
 
 const processData = (rawData: RawData[]): ProcessedData[] =>
   rawData
-    .filter(data => data.value > 0)
-    .map(data => ({
+    .filter((data) => data.value > 0)
+    .map((data) => ({
       id: parseInt(data.id),
       value: data.value,
-      date: new Date(data.timestamp)
+      date: new Date(data.timestamp),
     }));
 ```
 
 2. **Data Aggregation**
+
 ```typescript
 interface SalesData {
   product: string;
@@ -165,6 +173,7 @@ const aggregateSales = (sales: SalesData[]): Record<string, number> =>
 ```
 
 3. **Data Validation**
+
 ```typescript
 interface UserInput {
   name?: string;
@@ -174,13 +183,17 @@ interface UserInput {
 
 const validateUser = (input: UserInput): boolean =>
   Object.entries(input)
-    .filter(([key]) => ['name', 'age', 'email'].includes(key))
+    .filter(([key]) => ["name", "age", "email"].includes(key))
     .every(([key, value]) => {
       switch (key) {
-        case 'name': return typeof value === 'string' && value.length > 0;
-        case 'age': return typeof value === 'number' && value >= 0;
-        case 'email': return typeof value === 'string' && value.includes('@');
-        default: return false;
+        case "name":
+          return typeof value === "string" && value.length > 0;
+        case "age":
+          return typeof value === "number" && value >= 0;
+        case "email":
+          return typeof value === "string" && value.includes("@");
+        default:
+          return false;
       }
     });
 ```
@@ -188,10 +201,11 @@ const validateUser = (input: UserInput): boolean =>
 ## Common Pitfalls
 
 1. **Type Safety**
+
 ```typescript
 // Bad
 const process = (data: any[]) => {
-  return data.map(item => item.value);
+  return data.map((item) => item.value);
 };
 
 // Good
@@ -199,28 +213,30 @@ interface Data {
   value: number;
 }
 const process = (data: Data[]): number[] => {
-  return data.map(item => item.value);
+  return data.map((item) => item.value);
 };
 ```
 
 2. **Performance**
+
 ```typescript
 // Bad
 const result = data
-  .map(item => expensiveOperation(item))
-  .filter(item => item.value > 0)
-  .map(item => anotherExpensiveOperation(item));
+  .map((item) => expensiveOperation(item))
+  .filter((item) => item.value > 0)
+  .map((item) => anotherExpensiveOperation(item));
 
 // Good
 const result = data
-  .filter(item => item.value > 0)
-  .map(item => {
+  .filter((item) => item.value > 0)
+  .map((item) => {
     const processed = expensiveOperation(item);
     return anotherExpensiveOperation(processed);
   });
 ```
 
 3. **Error Handling**
+
 ```typescript
 // Bad
 const process = (data: number[]) => {

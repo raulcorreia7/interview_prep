@@ -6,9 +6,9 @@ Brief overview of uheaps.
 
 ## Cheat Sheet
 
-| Operation          | Time Complexity |
-|--------------------|-----------------|
-| Example            | O(n)            |
+| Operation | Time Complexity |
+| --------- | --------------- |
+| Example   | O(n)            |
 
 ## Common Patterns
 
@@ -19,4 +19,3 @@ Brief overview of uheaps.
 
 - [ ] Problem 1
 - [ ] Problem 2
-

@@ -3,6 +3,7 @@
 ## Basic Decorators [Core]
 
 ### Class Decorators [Core]
+
 ```typescript
 function sealed(constructor: Function) {
   Object.seal(constructor);
@@ -19,15 +20,16 @@ class Greeter {
 ```
 
 ### Method Decorators [Common]
+
 ```typescript
 function log(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;
-  
-  descriptor.value = function(...args: any[]) {
+
+  descriptor.value = function (...args: any[]) {
     console.log(`Calling ${propertyKey} with args:`, args);
     return originalMethod.apply(this, args);
   };
-  
+
   return descriptor;
 }
 
@@ -42,35 +44,37 @@ class Calculator {
 ## Property Decorators [Common]
 
 ### Basic Property Decorators [Common]
+
 ```typescript
 function format(formatString: string) {
   return function (target: any, propertyKey: string) {
     let value = target[propertyKey];
-    
-    const getter = function() {
+
+    const getter = function () {
       return value;
     };
-    
-    const setter = function(newVal: string) {
-      value = formatString.replace('%s', newVal);
+
+    const setter = function (newVal: string) {
+      value = formatString.replace("%s", newVal);
     };
-    
+
     Object.defineProperty(target, propertyKey, {
       get: getter,
       set: setter,
       enumerable: true,
-      configurable: true
+      configurable: true,
     });
   };
 }
 
 class User {
-  @format('Hello, %s!')
+  @format("Hello, %s!")
   greeting: string;
 }
 ```
 
 ### Accessor Decorators [Common]
+
 ```typescript
 function configurable(value: boolean) {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
@@ -81,23 +85,28 @@ function configurable(value: boolean) {
 class Point {
   private _x: number;
   private _y: number;
-  
+
   @configurable(false)
-  get x() { return this._x; }
-  
+  get x() {
+    return this._x;
+  }
+
   @configurable(true)
-  get y() { return this._y; }
+  get y() {
+    return this._y;
+  }
 }
 ```
 
 ## Parameter Decorators [Advanced]
 
 ### Basic Parameter Decorators [Advanced]
+
 ```typescript
 function validate(target: any, propertyKey: string, parameterIndex: number) {
-  const validators = Reflect.getMetadata('validators', target, propertyKey) || [];
+  const validators = Reflect.getMetadata("validators", target, propertyKey) || [];
   validators.push(parameterIndex);
-  Reflect.defineMetadata('validators', validators, target, propertyKey);
+  Reflect.defineMetadata("validators", validators, target, propertyKey);
 }
 
 class UserService {
@@ -110,22 +119,23 @@ class UserService {
 ## Advanced Decorators [Advanced]
 
 ### Decorator Factories [Advanced]
+
 ```typescript
 function logWithPrefix(prefix: string) {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
-    
-    descriptor.value = function(...args: any[]) {
+
+    descriptor.value = function (...args: any[]) {
       console.log(`[${prefix}] Calling ${propertyKey} with args:`, args);
       return originalMethod.apply(this, args);
     };
-    
+
     return descriptor;
   };
 }
 
 class Logger {
-  @logWithPrefix('DEBUG')
+  @logWithPrefix("DEBUG")
   debug(message: string) {
     console.log(message);
   }
@@ -148,27 +158,28 @@ class Logger {
 ## Common Patterns [Common]
 
 ### Validation Pattern [Common]
+
 ```typescript
 function validate(min: number, max: number) {
   return function (target: any, propertyKey: string) {
     let value = target[propertyKey];
-    
-    const getter = function() {
+
+    const getter = function () {
       return value;
     };
-    
-    const setter = function(newVal: number) {
+
+    const setter = function (newVal: number) {
       if (newVal < min || newVal > max) {
         throw new Error(`Value must be between ${min} and ${max}`);
       }
       value = newVal;
     };
-    
+
     Object.defineProperty(target, propertyKey, {
       get: getter,
       set: setter,
       enumerable: true,
-      configurable: true
+      configurable: true,
     });
   };
 }
@@ -180,18 +191,19 @@ class User {
 ```
 
 ### Logging Pattern [Common]
+
 ```typescript
 function logExecutionTime(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;
-  
-  descriptor.value = async function(...args: any[]) {
+
+  descriptor.value = async function (...args: any[]) {
     const start = performance.now();
     const result = await originalMethod.apply(this, args);
     const end = performance.now();
     console.log(`Execution time: ${end - start}ms`);
     return result;
   };
-  
+
   return descriptor;
 }
 
@@ -206,6 +218,7 @@ class DataService {
 ## Interview Focus Areas
 
 ### Core Knowledge [Core]
+
 - Basic decorator syntax
 - Class decorators
 - Method decorators
@@ -213,18 +226,21 @@ class DataService {
 - Basic decorator usage
 
 ### Common Interview Questions [Common]
+
 - What are decorators and how do they work?
 - How do you create a method decorator?
 - What are decorator factories?
 - How do you handle validation with decorators?
 
 ### Advanced Topics [Advanced]
+
 - Parameter decorators
 - Metadata reflection
 - Advanced decorator patterns
 - Decorator composition
 
 ### Mastery Level [Mastery]
+
 - Complex decorator patterns
 - Performance optimization
 - Advanced metadata usage

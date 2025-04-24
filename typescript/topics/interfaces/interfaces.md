@@ -3,6 +3,7 @@
 ## Basic Interfaces [Core]
 
 ### Interface Declaration [Core]
+
 ```typescript
 interface User {
   name: string;
@@ -13,6 +14,7 @@ interface User {
 ```
 
 ### Optional Properties [Core]
+
 ```typescript
 interface Config {
   required: string;
@@ -24,17 +26,19 @@ interface Config {
 ## Function Types [Common]
 
 ### Function Interfaces [Common]
+
 ```typescript
 interface SearchFunc {
   (source: string, subString: string): boolean;
 }
 
-const mySearch: SearchFunc = function(source: string, subString: string) {
+const mySearch: SearchFunc = function (source: string, subString: string) {
   return source.search(subString) > -1;
 };
 ```
 
 ### Method Interfaces [Common]
+
 ```typescript
 interface ClockInterface {
   currentTime: Date;
@@ -45,6 +49,7 @@ interface ClockInterface {
 ## Advanced Interfaces [Advanced]
 
 ### Indexable Types [Advanced]
+
 ```typescript
 interface StringArray {
   [index: number]: string;
@@ -58,6 +63,7 @@ interface NumberDictionary {
 ```
 
 ### Hybrid Types [Advanced]
+
 ```typescript
 interface Counter {
   (start: number): string;
@@ -66,9 +72,13 @@ interface Counter {
 }
 
 function getCounter(): Counter {
-  let counter = function(start: number) { return start.toString(); };
+  let counter = function (start: number) {
+    return start.toString();
+  };
   counter.interval = 123;
-  counter.reset = function() { counter.interval = 0; };
+  counter.reset = function () {
+    counter.interval = 0;
+  };
   return counter;
 }
 ```
@@ -76,6 +86,7 @@ function getCounter(): Counter {
 ## Interface Inheritance [Common]
 
 ### Extending Interfaces [Common]
+
 ```typescript
 interface Shape {
   color: string;
@@ -91,6 +102,7 @@ interface Circle extends Shape {
 ```
 
 ### Multiple Inheritance [Common]
+
 ```typescript
 interface Shape {
   color: string;
@@ -121,6 +133,7 @@ interface Square extends Shape, PenStroke {
 ## Common Patterns [Common]
 
 ### Factory Pattern [Common]
+
 ```typescript
 interface Animal {
   makeSound(): void;
@@ -132,6 +145,7 @@ interface AnimalFactory {
 ```
 
 ### Strategy Pattern [Common]
+
 ```typescript
 interface PaymentStrategy {
   pay(amount: number): void;
@@ -153,6 +167,7 @@ class PayPalPayment implements PaymentStrategy {
 ## Interview Focus Areas
 
 ### Core Knowledge [Core]
+
 - Interface declaration
 - Optional properties
 - Readonly properties
@@ -160,18 +175,21 @@ class PayPalPayment implements PaymentStrategy {
 - Interface vs type alias
 
 ### Common Interview Questions [Common]
+
 - What's the difference between interface and type?
 - When should you use interfaces vs type aliases?
 - How do you handle optional properties in interfaces?
 - What are function interfaces and how do you use them?
 
 ### Advanced Topics [Advanced]
+
 - Indexable types
 - Hybrid types
 - Advanced inheritance
 - Complex interface patterns
 
 ### Mastery Level [Mastery]
+
 - Advanced type manipulation with interfaces
 - Performance implications of interfaces
 - Complex design patterns with interfaces

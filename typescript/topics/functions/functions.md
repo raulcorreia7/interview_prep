@@ -1,10 +1,12 @@
 # Functions in TypeScript
 
-TypeScript enhances JavaScript functions by enabling type annotations for parameters and return values.
+TypeScript enhances JavaScript functions by enabling type annotations for parameters and return
+values.
 
 ## Function Declarations [Core]
 
 ### Basic Functions [Core]
+
 ```typescript
 function greet(name: string): string {
   return `Hello, ${name}!`;
@@ -16,6 +18,7 @@ const greetArrow = (name: string): string => {
 ```
 
 ### Function Types [Core]
+
 ```typescript
 type GreetFunction = (name: string) => string;
 
@@ -27,6 +30,7 @@ const greet: GreetFunction = (name) => {
 ## Parameters [Core]
 
 ### Required Parameters [Core]
+
 ```typescript
 function add(x: number, y: number): number {
   return x + y;
@@ -34,6 +38,7 @@ function add(x: number, y: number): number {
 ```
 
 ### Optional Parameters [Common]
+
 ```typescript
 function greet(name: string, title?: string): string {
   return title ? `Hello, ${title} ${name}!` : `Hello, ${name}!`;
@@ -41,6 +46,7 @@ function greet(name: string, title?: string): string {
 ```
 
 ### Default Parameters [Common]
+
 ```typescript
 function greet(name: string, title: string = "Mr."): string {
   return `Hello, ${title} ${name}!`;
@@ -48,6 +54,7 @@ function greet(name: string, title: string = "Mr."): string {
 ```
 
 ### Rest Parameters [Common]
+
 ```typescript
 function sum(...numbers: number[]): number {
   return numbers.reduce((a, b) => a + b, 0);
@@ -57,6 +64,7 @@ function sum(...numbers: number[]): number {
 ## Function Overloading [Advanced]
 
 ### Overload Signatures [Advanced]
+
 ```typescript
 function makeDate(timestamp: number): Date;
 function makeDate(m: number, d: number, y: number): Date;
@@ -72,6 +80,7 @@ function makeDate(mOrTimestamp: number, d?: number, y?: number): Date {
 ## Higher-Order Functions [Common]
 
 ### Function as Parameters [Common]
+
 ```typescript
 function map<T, U>(array: T[], callback: (item: T) => U): U[] {
   return array.map(callback);
@@ -79,6 +88,7 @@ function map<T, U>(array: T[], callback: (item: T) => U): U[] {
 ```
 
 ### Function as Return Values [Common]
+
 ```typescript
 function createAdder(x: number): (y: number) => number {
   return (y: number) => x + y;
@@ -101,6 +111,7 @@ function createAdder(x: number): (y: number) => number {
 ## Common Patterns [Common]
 
 ### Callback Patterns [Common]
+
 ```typescript
 function fetchData(callback: (data: string) => void): void {
   // Simulate async operation
@@ -111,6 +122,7 @@ function fetchData(callback: (data: string) => void): void {
 ```
 
 ### Factory Functions [Common]
+
 ```typescript
 function createUser(name: string, age: number) {
   return {
@@ -118,12 +130,13 @@ function createUser(name: string, age: number) {
     age,
     greet() {
       return `Hello, ${this.name}!`;
-    }
+    },
   };
 }
 ```
 
 ### Currying [Advanced]
+
 ```typescript
 function curry<T, U, V>(fn: (a: T, b: U) => V): (a: T) => (b: U) => V {
   return (a: T) => (b: U) => fn(a, b);
@@ -133,6 +146,7 @@ function curry<T, U, V>(fn: (a: T, b: U) => V): (a: T) => (b: U) => V {
 ## Interview Focus Areas
 
 ### Core Knowledge [Core]
+
 - Function declarations and expressions
 - Parameter types and optional parameters
 - Return type annotations
@@ -140,18 +154,21 @@ function curry<T, U, V>(fn: (a: T, b: U) => V): (a: T) => (b: U) => V {
 - Arrow functions
 
 ### Common Interview Questions [Common]
+
 - What's the difference between function declarations and arrow functions?
 - How do you handle optional parameters in TypeScript?
 - What are function types and how are they used?
 - How do you implement function overloading?
 
 ### Advanced Topics [Advanced]
+
 - Function overloading
 - Higher-order functions
 - Currying and partial application
 - Generic functions
 
 ### Mastery Level [Mastery]
+
 - Advanced type inference in functions
 - Complex function composition
 - Performance optimization in function calls
@@ -160,6 +177,7 @@ function curry<T, U, V>(fn: (a: T, b: U) => V): (a: T) => (b: U) => V {
 ## Common Pitfalls
 
 1. **Type Safety**
+
 ```typescript
 // Bad
 function process(data: any) {
@@ -173,6 +191,7 @@ function process(data: { value: string }): string {
 ```
 
 2. **Parameter Validation**
+
 ```typescript
 // Bad
 function divide(a: number, b: number) {
@@ -181,7 +200,7 @@ function divide(a: number, b: number) {
 
 // Good
 function divide(a: number, b: number) {
-  if (b === 0) throw new Error('Division by zero');
+  if (b === 0) throw new Error("Division by zero");
   return a / b;
 }
 ```
