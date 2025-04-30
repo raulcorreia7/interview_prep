@@ -1,7 +1,5 @@
 {
     "scripts": {
-        "format": "prettier '**/*.ts' --write",
-        "format-md": "prettier '**/*.md' --write"
-
+        "format": "prettier '**/*.{ts,md}' --write"
     }
 }
