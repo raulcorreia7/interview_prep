@@ -1,0 +1,17 @@
+{
+	"name": "codebin",
+	"scripts": {
+		"dev": "bun run --hot src/index.ts",
+		"lint": "bunx --bun @biomejs/biome lint --write",
+		"format": "bunx --bun @biomejs/biome format --write"
+	},
+	"dependencies": {
+		"hono": "^4.12.6",
+		"vitest": "^4.0.18",
+		"zod": "^4.3.6"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.6",
+		"@types/bun": "latest"
+	}
+}
