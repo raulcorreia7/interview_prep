@@ -17,11 +17,16 @@ projects/
 
 ## Current projects
 
-- `projects/codebin` - pastebin backend practice project
+- `projects/codebin` - active pastebin backend work-in-progress project
 
 ## Shared study material
 
 - `docs/typescript` - TypeScript topics and data structure practice notes
+
+## Workflow
+
+- Use `docs/` for shared notes, reference material, and prep content
+- Use `projects/` for active buildable projects you are working on
 
 ## Conventions
 

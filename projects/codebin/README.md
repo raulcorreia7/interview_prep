@@ -1,6 +1,6 @@
 # codebin
 
-Pastebin backend practice app inside the `interview_prep` monorepo.
+Active pastebin backend work-in-progress inside the `interview_prep` monorepo.
 
 This project is self-contained. Run all commands from `projects/codebin`.
 
