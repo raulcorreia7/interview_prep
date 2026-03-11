@@ -9,6 +9,8 @@ dependencies, and commands.
 
 ```txt
 docs/
+  README.md
+  typescript/
 projects/
   codebin/
 ```
@@ -17,12 +19,14 @@ projects/
 
 - `projects/codebin` - pastebin backend practice project
 
+## Shared study material
+
+- `docs/typescript` - TypeScript topics and data structure practice notes
+
 ## Conventions
 
-- Put each new project in its own folder under `projects/`
+- Put each new runnable project in its own folder under `projects/`
 - Keep project-specific tooling inside that project only
 - Run install, dev, test, lint, and build commands from the project directory
 - Keep shared interview notes and reusable prep material in `docs/`
 - Add root-level files only when they document the monorepo itself
-
-Run commands from inside each project directory.

@@ -15,3 +15,7 @@ single project.
 - `behavioral.md`
 - `backend-topics.md`
 - `questions-to-practice.md`
+
+## Current shared material
+
+- `typescript/` - TypeScript topics and data structure practice notes
